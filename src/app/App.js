@@ -26,8 +26,8 @@ class App extends PureComponent {
           <main>
             <Switch>
               <Route exact path="/" component = {Home}/>
-              <Route exact path="/search" component = {Search}/>
-              <Route exact path="/upload" component = {UploadForm}/>
+              {/* <Route exact path="/search" component = {Search}/>
+              <Route exact path="/upload" component = {UploadForm}/> */}
               <Redirect to="/"/>
             </Switch>
             <Loading loading={loading}/>
