@@ -4,14 +4,14 @@ import superagent from 'superagent';
 let token = '';
 
 const storage = window.localStorage;
-
-// store.subscribe(() => {
-//   const { token: newToken } = store.getState().auth;
-//   if(newToken !== token) {
-//     token = newToken;
-//     token ? storage.token = token : storage.clear('token');
-//   }
-// });
+console.log('token is:',window.localStorage.token);
+store.subscribe(() => {
+  const { token: newToken } = store.getState().auth;
+  if(newToken !== token) {
+    token = newToken;
+    token ? storage.token = token : storage.clear('token');
+  }
+});
 
 export const getStoredToken = () => storage.token;
 
@@ -30,6 +30,7 @@ const wrap = cmd => cmd
 
 export const request = {
   get(url) {
+    console.log(url);
     return wrap(superagent.get(`${API_URL}${url}`));
   },
   post(url, data) {

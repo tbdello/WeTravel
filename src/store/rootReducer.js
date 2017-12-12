@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux';
-import { error, loading } from '../app/reducer';
-import { feed } from '../home/reducer';
+import { error, loading } from '../app/reducers';
+import { feed } from '../home/reducers';
+import auth from '../auth/reducers';
 
 export default combineReducers({
+  auth,
   feed,
   loading,
-  error,
+  error
 });

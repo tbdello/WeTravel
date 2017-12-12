@@ -1,38 +1,32 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect
-} from 'react-router-dom';
-import Header from './Header'; 
-import Error from './Error';
+import { checkForToken } from '../auth/actions';
+import Routes from './Routes';
+import Header from './Header';
 import Loading from './Loading';
-import Home from '../home/Home';
-import Search from '../search/Search';
-import UploadForm from '../upload/UploadForm';
+import Error from './Error';
 
-class App extends PureComponent {
-  
+class App extends Component {
+  componentDidMount() {
+    this.props.checkForToken();
+  }
+
   render() {
-    const { loading, error } = this.props;
-
+    const { checkedToken, loading, error } = this.props;
     return (
       <Router>
-        <div className="App">
-          <Header/>
-          <main>
-            <Switch>
-              <Route exact path="/" component = {Home}/>
-              {/* <Route exact path="/search" component = {Search}/>
-              <Route exact path="/upload" component = {UploadForm}/> */}
-              <Redirect to="/"/>
-            </Switch>
-            <Loading loading={loading}/>
-            <Error error={error}/>
-          </main>
+        <div>
+          { checkedToken &&
+            <div className="App">
+              <Header/>
+              <main>
+                <Routes/>
+              </main>
+            </div>
+          }
+          {loading && <Loading/>}
+          { error && <Error/>}
         </div>
       </Router>
     );
@@ -41,8 +35,9 @@ class App extends PureComponent {
 
 export default connect(
   state => ({ 
+    checkedToken: state.auth.checkedToken,
     loading: state.loading,
     error: state.error
   }),
-  null
+  { checkForToken }
 )(App);
