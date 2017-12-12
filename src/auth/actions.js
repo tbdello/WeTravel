@@ -14,7 +14,7 @@ export function checkForToken() {
 
     return authApi.verify()
       .then(() => authApi.getUser())
-      .then(user => {
+      .then(({ user }) => {
         dispatch({ type: actions.SET_CURRENT_USER, payload: user });
       })
       .catch(error => {
@@ -30,11 +30,12 @@ export function signin(credentials) {
         dispatch({ type: actions.GOT_TOKEN, payload: token });
       })
       .then(() => authApi.getUser())
-      .then(user => {
-        dispatch({ type: actions.SET_CURRENT_USER, payload: user });
+      .then(({ user }) => {
+        console.log('we are in signin and the user is:', user);
+        return dispatch({ type: actions.SET_CURRENT_USER, payload: user });
       })
       .catch(error => {
-        dispatch({ type: actions.AUTH_FAILED, payload: error });
+        return dispatch({ type: actions.AUTH_FAILED, payload: error });
       });
   };
 }
@@ -46,7 +47,7 @@ export function signup(user) {
         dispatch({ type: actions.GOT_TOKEN, payload: token });
       })
       .then(() => authApi.getUser())
-      .then(user => {
+      .then(({ user }) => {
         dispatch({ type: actions.SET_CURRENT_USER, payload: user });
       })
       .catch(error => {

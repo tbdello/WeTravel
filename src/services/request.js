@@ -4,7 +4,7 @@ import superagent from 'superagent';
 let token = '';
 
 const storage = window.localStorage;
-
+console.log('token is:',window.localStorage.token);
 store.subscribe(() => {
   const { token: newToken } = store.getState().auth;
   if(newToken !== token) {
@@ -30,6 +30,7 @@ const wrap = cmd => cmd
 
 export const request = {
   get(url) {
+    console.log(url);
     return wrap(superagent.get(`${API_URL}${url}`));
   },
   post(url, data) {
