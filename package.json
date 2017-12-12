@@ -15,8 +15,9 @@
     "superagent": "^3.8.2"
   },
   "scripts": {
+    "copy": "rm -rf ../i-travel-server/public && cp -R ./build ../i-travel-server/public",
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && npm run copy",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

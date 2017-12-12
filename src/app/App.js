@@ -13,14 +13,20 @@ import Loading from './Loading';
 import Home from '../home/Home';
 import Search from '../search/Search';
 import UploadForm from '../upload/UploadForm';
+import { checkForToken } from '../auth/actions';
 
 class App extends PureComponent {
+
+  componentDidMount() {
+    this.props.checkForToken();
+  }
   
   render() {
-    const { loading, error } = this.props;
+    const { loading, error, checkedToken } = this.props;
 
     return (
       <Router>
+        { checkedToken && 
         <div className="App">
           <Header/>
           <main>
@@ -34,6 +40,7 @@ class App extends PureComponent {
             <Error error={error}/>
           </main>
         </div>
+        }
       </Router>
     );
   }
@@ -41,8 +48,10 @@ class App extends PureComponent {
 
 export default connect(
   state => ({ 
+    user: state.auth.user,
+    checkedToken: state.auth.checkedToken,
     loading: state.loading,
     error: state.error
   }),
-  null
+  { checkForToken }
 )(App);
