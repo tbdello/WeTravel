@@ -7,14 +7,15 @@ import {
 import Home from '../home/Home';
 import Auth from '../auth/Auth';
 import PrivateRoute from './PrivateRoute';
+import Experience from '../experience/Experience';
 
 
 export default () => (
   <Switch> 
-    {/* <Route exact path="/" render={() => <Home/>}/>; */}
     <Route path="/auth" render={() => <Auth/>}/>;
-    <PrivateRoute exact path="/home" component={Home}/>;
-    {/* <PrivateRoute path="/albums/:id" render={({ match }) => <Experience id={match.params.id}/>}/>; */}
-    <Redirect to="/home"/>
+    <PrivateRoute exact path="/" component={Home}/>;
+    {/* <PrivateRoute path="/experience/:id" component={Experience}/> */}
+    <PrivateRoute path="/experience/:id" render={({ match }) => <Experience id={match.params.id}/>}/>
+    <Redirect to="/"/>
   </Switch>  
 );

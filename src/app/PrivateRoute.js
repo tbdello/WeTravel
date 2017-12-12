@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 
 class PrivateRoute extends PureComponent {
   render() {
-    const { Component, render, user, ...rest } = this.props;
+    const { component: Component, render, user, ...rest } = this.props;
     return(
       <Route {...rest} render={props => {
         if(user) {
-          console.log('user is with render', user, render);
+          console.log('render is', render);
           return render ? render(props) : <Component {...props}/>;
         }
-        console.log('we sholdnt be here');
         return (
           <Redirect to={{
             pathname: '/auth/signin',
@@ -26,8 +25,4 @@ class PrivateRoute extends PureComponent {
 export default connect(
   state => ({ user: state.auth.user }),
   null,
-  (stateProps, dispatchProps, ownProps) => ({ 
-    user: stateProps.user,
-    Component: ownProps.component
-  })
 )(PrivateRoute);
