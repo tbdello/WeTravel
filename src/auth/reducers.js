@@ -5,7 +5,7 @@ export default (state = {}, action) => combineReducers({ user, token, error, che
 
 export function user(state = null, { type, payload }) {
   switch(type) {
-    case actions.FETCHED_USER:
+    case actions.SET_CURRENT_USER:
       return payload;
     case actions.LOGOUT:
     case actions.AUTH_FAILED:
@@ -33,7 +33,7 @@ export function error(state = null, { type, payload }) {
       return payload;
     case actions.LOGOUT:
     case actions.GOT_TOKEN:
-    case actions.FETCHED_USER:
+    case actions.SET_CURRENT_USER:
       return null;
     default:
       return state;
@@ -43,7 +43,7 @@ export function error(state = null, { type, payload }) {
 export function checkedToken(state = false, { type, payload }) {
   switch(type) {
     case actions.CHECKED_TOKEN:
-    case actions.FETCHED_USER:
+    case actions.SET_CURRENT_USER:
     case actions.AUTH_FAILED:
       return true;
     default:

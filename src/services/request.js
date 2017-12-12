@@ -5,13 +5,13 @@ let token = '';
 
 const storage = window.localStorage;
 
-// store.subscribe(() => {
-//   const { token: newToken } = store.getState().auth;
-//   if(newToken !== token) {
-//     token = newToken;
-//     token ? storage.token = token : storage.clear('token');
-//   }
-// });
+store.subscribe(() => {
+  const { token: newToken } = store.getState().auth;
+  if(newToken !== token) {
+    token = newToken;
+    token ? storage.token = token : storage.clear('token');
+  }
+});
 
 export const getStoredToken = () => storage.token;
 

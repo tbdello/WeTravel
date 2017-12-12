@@ -16,16 +16,18 @@ class App extends Component {
     const { checkedToken, loading, error } = this.props;
     return (
       <Router>
-        { checkedToken &&
-          <div className="App">
-            <Header/>
-            <main>
-              <Routes/>
-            </main>
-          </div>
-        }
-        {loading && <Loading/>}
-        { error && <Error/>}
+        <div>
+          { checkedToken &&
+            <div className="App">
+              <Header/>
+              <main>
+                <Routes/>
+              </main>
+            </div>
+          }
+          {loading && <Loading/>}
+          { error && <Error/>}
+        </div>
       </Router>
     );
   }

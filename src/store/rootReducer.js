@@ -4,7 +4,8 @@ import { feed } from '../home/reducers';
 import auth from '../auth/reducers';
 
 export default combineReducers({
+  auth,
   feed,
   loading,
-  error,
+  error
 });
