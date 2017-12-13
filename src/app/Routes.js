@@ -10,7 +10,7 @@ export default () => (
   <Switch>
     <Route path="/auth" render={() => <Auth />} />;
     <PrivateRoute exact path="/" component={Home} />;
-    <PrivateRoute exact path="/upload" render={onSubmit} />;
+    <PrivateRoute exact path="/upload" component={UploadForm} />;
     <PrivateRoute
       path="/experiences/:id"
       render={({ match }) => <Experience id={match.params.id} />}

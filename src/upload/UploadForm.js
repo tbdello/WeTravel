@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { getSignedRequest } from './actions';
-import connect from 'react-redux';
-import onSubmit from './actions';
+import { onSubmit } from './actions';
+import { connect } from 'react-redux';
 class UploadForm extends PureComponent {
   render() {
     return(
@@ -10,15 +9,17 @@ class UploadForm extends PureComponent {
         onSubmit={async event => {
           event.preventDefault();
           const form = event.target;
-          const { image, caption } = form.elements;
+          console.log(form.files);
+          // const { image, caption } = form.elements;
 
-          try {
-            await getSignedRequest(image.value);
-            form.reset();
-            image.focus();
-          } catch (err) {
-            throw err;
-          }
+          // try {
+          //   await getSignedRequest(image.value);
+          //   form.reset();
+          //   image.focus();
+          //   caption.focus();
+          // } catch (err) {
+          //   throw err;
+          // }
         }}
       >
        

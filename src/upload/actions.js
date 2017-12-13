@@ -1,4 +1,5 @@
 export function onSubmit(image, caption) {
+  getSignedRequest(image);
 
 }
 
@@ -33,15 +34,14 @@ export function uploadImage(image, signedRequest, url){
   const uploadHeaders = new Headers({
     'Content-Type': 'image/png',
     'Content-Type': 'image/jpeg',
-    'Content-Type': 'image/png',
+    'Content-Type': 'image/svg',
   });
 
   const uploadInit = {
     method: 'PUT',
     headers: uploadHeaders,
     mode: 'cors',
-    cache: 'default',
-    credentials: 'include'
+    cache: 'default'
   };
 
   fetch(signedRequest, uploadInit)
