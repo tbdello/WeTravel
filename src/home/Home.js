@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-//import Feed from './Feed';
+import Feed from './Feed';
 import { connect } from 'react-redux';
 import { loadExpByUser } from '../experience/actions';
 
@@ -8,7 +8,8 @@ class Home extends PureComponent {
     return (
       <div>
         <h1>Hey {this.props.user.name}</h1>
-        {/* <Feed/> */}
+        <h4>Feed:</h4>
+        <Feed/>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadFeed } from './actions';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Feed extends PureComponent {
 
@@ -15,11 +15,14 @@ class Feed extends PureComponent {
     return (
       <div>
         <ul>
-          {this.props.feed.map(exp => (
-            <li type="none" key={exp._id}>
-              <NavLink to={`experience/${exp._id}`}> <h4> exp.title </h4> </NavLink>
-              <NavLink to={`experience/${exp._id}`}> <img src={exp.img[0].url} alt={exp.img[0].caption} /> </NavLink>
-            </li>
+          {this.props.feed.map(exp =>(
+            <div>
+              <li key={exp._id}>
+                <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
+                </h5></Link>
+              </li>
+              {exp.images[0] && <img src={exp.images[0].imageURI} alt={exp.images[0].caption}/>}
+            </div>
           ))}
         </ul>
       </div>

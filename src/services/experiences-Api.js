@@ -3,8 +3,8 @@ import { request } from './request';
 const URL = '/experiences';
 
 export default {
-  getFeed() {
-    return request.get(`${URL}/feed`);
+  search(query = '') {
+    return request.get(`${URL}/search/?${query}`);
   },
   get(id) {
     return request.get(`${URL}/${id}`);
