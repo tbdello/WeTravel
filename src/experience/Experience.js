@@ -8,18 +8,20 @@ class Experience extends PureComponent {
   }
   
   render() {
-    if(!this.props.exp[0]) return <div>no such experience has been posted yet</div>;
+    const searchedExp = this.props.exp.find(exp => exp._id === this.props.id);
+    if(!searchedExp) return <div>no such experience has been posted yet</div>;
     
     console.log('exp is',this.props.exp);
 
     return (
       <div>
         <h1>Hey {this.props.user.name} Welcome to Experience page</h1>
-        <h5>Location:  {this.props.exp.location} </h5> 
+        <h3>title is: {searchedExp.title}</h3>
+        <h5>Location:  {searchedExp.location} </h5> 
         <ul>
-          {this.props.exp[0].images.map(image => (
+          {searchedExp.images.map(image => (
             <li key={image._id}>
-              <img src ={image.url} alt={image.caption}/>
+              <img src ={image.imageURI} alt={image.caption}/>
               <h5> {image.caption} </h5>
             </li>
           ))}
