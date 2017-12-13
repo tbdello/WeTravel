@@ -1,6 +1,6 @@
 import { request } from './request';
 
-const URL = '/exp';
+const URL = '/experiences';
 
 export default {
   getFeed() {
