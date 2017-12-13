@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { getSignedRequest } from './actions';
 import connect from 'react-redux';
 import onSubmit from './actions';
 class UploadForm extends PureComponent {
@@ -12,11 +13,7 @@ class UploadForm extends PureComponent {
           const { image, caption } = form.elements;
 
           try {
-            await onSubmit({
-              image: image.value,
-              caption: caption.value
-            });
-
+            await getSignedRequest(image.value);
             form.reset();
             image.focus();
           } catch (err) {
