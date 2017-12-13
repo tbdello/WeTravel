@@ -15,11 +15,9 @@ class Home extends PureComponent {
         <ul>
           <h4>Here are Experiences you've shared</h4>
           {expByUser.map(exp =>(
-            <div>
-              <li key={exp._id}>
-                <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
-                </h5></Link>
-              </li>
+            <div key={exp._id}>
+              <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
+              </h5></Link>
               {exp.images[0] && <img src={exp.images[0].imageURI} alt={exp.images[0].caption}/>}
             </div>
           ))}
