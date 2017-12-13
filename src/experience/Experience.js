@@ -34,4 +34,4 @@ class Experience extends PureComponent {
 export default connect(
   state => ({ user: state.auth.user, exp: state.experience }),
   { loadExp }
-)(Experience);
+)(Experience); 
