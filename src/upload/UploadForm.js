@@ -1,42 +1,44 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import connect from 'react-redux';
+import onSubmit from './actions';
+class UploadForm extends PureComponent {
+  render() {
+    return(
+      <form
+        onSubmit={async event => {
+          event.preventDefault();
+          const form = event.target;
+          const { image, caption } = form.elements;
 
-const UploadForm = ({ _id, image, caption, onSubmit }) => (
-  <form
-    onSubmit={async event => {
-      event.preventDefault();
-      const form = event.target;
-      const { image, caption } = form.elements;
+          try {
+            await onSubmit({
+              image: image.value,
+              caption: caption.value
+            });
 
-      try {
-        await onSubmit({
-          _id,
-          image: image.value,
-          caption: caption.value
-        });
+            form.reset();
+            image.focus();
+          } catch (err) {
+            throw err;
+          }
+        }}
+      >
+       
+        <input
+          type="file"
+          name="image"
+          placeholder="Insert file"
+        />
+        
+        <input name="caption" placeholder="Enter caption" />
+       
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+}
 
-        form.reset();
-        image.focus();
-      } catch (err) {
-        throw err;
-      }
-    }}
-  >
-    <label>
-      image:{' '}
-      <input
-        type="file"
-        alt="upload image"
-        name="image"
-        defaultValue={image}
-      />
-    </label>
-    <label>
-      caption: <input name="caption" defaultValue={caption} />
-    </label>
-    <button type="submit">Submit</button>
-  </form>
-);
 
 UploadForm.propTypes = {
   _id: PropTypes.string,
@@ -45,4 +47,7 @@ UploadForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
   
-export default UploadForm;
+export default connect(
+  state => ({ user: state.auth.user }),
+  { onSubmit }
+)(UploadForm);
