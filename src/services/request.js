@@ -4,7 +4,6 @@ import superagent from 'superagent';
 let token = '';
 
 const storage = window.localStorage;
-console.log('token is:',window.localStorage.token);
 store.subscribe(() => {
   const { token: newToken } = store.getState().auth;
   if(newToken !== token) {

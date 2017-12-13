@@ -8,7 +8,6 @@ class PrivateRoute extends PureComponent {
     return(
       <Route {...rest} render={props => {
         if(user) {
-          console.log('render is', render);
           return render ? render(props) : <Component {...props}/>;
         }
         return (
