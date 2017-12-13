@@ -14,8 +14,7 @@ export default () => (
   <Switch> 
     <Route path="/auth" render={() => <Auth/>}/>;
     <PrivateRoute exact path="/" component={Home}/>;
-    {/* <PrivateRoute path="/experience/:id" component={Experience}/> */}
-    <PrivateRoute path="/experience/:id" render={({ match }) => <Experience id={match.params.id}/>}/>
+    <PrivateRoute path="/experiences/:id" render={({ match }) => <Experience id={match.params.id}/>}/>
     <Redirect to="/"/>
   </Switch>  
 );

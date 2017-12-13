@@ -7,7 +7,7 @@ class Home extends PureComponent {
     return (
       <div>
         <h1>Hey {this.props.user.name}</h1>
-        <Feed/>
+        {/* <Feed/> */}
       </div>
     );
   }
