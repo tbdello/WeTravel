@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { addCategory } from './actions';
+import { addExperience } from './actions';
 import { Redirect } from 'react-router-dom';
 
 export class UploadForm extends PureComponent {
@@ -41,5 +41,5 @@ export class UploadForm extends PureComponent {
 
 export default connect( 
   state => ({ categories: state }),
-  { addCategory }
+  { addExperience }
 )(UploadForm);
