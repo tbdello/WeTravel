@@ -9,14 +9,19 @@ class Home extends PureComponent {
   }
   render() {
     const expByUser = this.props.user.experiences;
+    if(!expByUser) return(<div></div>);
     return (
       <div>
         <ul>
           <h4>Here are Experiences you've shared</h4>
           {expByUser.map(exp =>(
-            <li key={exp._id}>
-              <Link to={`experiences/${exp._id}`}> <h5>{exp.title}</h5></Link>
-            </li>
+            <div>
+              <li key={exp._id}>
+                <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
+                </h5></Link>
+              </li>
+              {exp.images[0] && <img src={exp.images[0].imageURI} alt={exp.images[0].caption}/>}
+            </div>
           ))}
         </ul> 
       </div>   

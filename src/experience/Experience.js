@@ -1,14 +1,27 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadExp } from './actions';
+import { addImageToExp } from './actions';
 
 class Experience extends PureComponent {
   componentDidMount() {
     this.props.loadExp(this.props.id);
   }
+
+  handleImgPost = event =>{
+    event.preventDefault();
+    const { elements } = event.target;
+    const image = {
+      imageURI: elements.imageUri.value,
+      caption: elements.caption.value,
+    };
+    this.setState({ redirect: true });
+    this.props.addImageToExp(this.props.id, image); 
+  }
   
   render() {
     const searchedExp = this.props.exp.find(exp => exp._id === this.props.id);
+    console.log(this.props.id);
     if(!searchedExp) return <div>no such experience has been posted yet</div>;
 
     return (
@@ -27,6 +40,14 @@ class Experience extends PureComponent {
           </ul>)
           :<div> No images uploaded yet </div>
         }
+        <div>
+          <h4>Time to add some images!</h4>
+          <form onSubmit={this.handleImgPost}> 
+            <input name="imageUri" placeholder="ImageUrI"/>
+            <input name="caption" placeholder="caption"/>
+            <button type="submit">Add</button>
+          </form> 
+        </div>
       </div>
     );
   }
@@ -34,5 +55,5 @@ class Experience extends PureComponent {
 
 export default connect(
   state => ({ user: state.auth.user, exp: state.experiences }),
-  { loadExp }
+  { loadExp, addImageToExp }
 )(Experience); 

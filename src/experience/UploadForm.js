@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { addExperience } from './actions';
-//import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 export class UploadForm extends PureComponent {
   
@@ -9,11 +9,7 @@ export class UploadForm extends PureComponent {
     redirect: false
   }
 
-  handleAdd = exp => {
-    this.props.addExperience(exp);
-  }
-
-  handleSubmit = event => {
+  handleExpPost = event => {
     event.preventDefault();
     const { elements } = event.target;
     const exp = {
@@ -22,20 +18,22 @@ export class UploadForm extends PureComponent {
       location: elements.location.value,
       user: this.props.user._id
     };
+    this.props.addExperience(exp);
     this.setState({ redirect: true });
-    this.handleAdd(exp);
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input name="title" placeholder="title"/>
-          <input name="description" placeholder="description"/>
-          <input name="location" placeholder="location"/>
-          <button type="submit">Add</button>
-        </form> 
-        {/* { this.state.redirect && (<Redirect to="/categories"/>) } */}
+        <div>
+          <form onSubmit={this.handleExpPost}>
+            <input name="title" placeholder="title"/>
+            <input name="description" placeholder="description"/>
+            <input name="location" placeholder="location"/>
+            <button type="submit">Add</button>
+          </form> 
+          { this.state.redirect && (<Redirect to="/MyExperiences"/>) }
+        </div>
       </div>
     );
   }

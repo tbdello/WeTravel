@@ -1,5 +1,5 @@
 import experiencesApi from '../services/experiences-Api';
-import { EXPERIENCE_LOAD, EXPERIENCE_ADD, LOAD_USER_EXP } from './reducers';
+import { EXPERIENCE_LOAD, EXPERIENCE_ADD, LOAD_USER_EXP, ADD_IMAGE_TO_EXP } from './reducers';
 
 export function loadExp(id) {
   return (dispatch, getState) => {
@@ -24,6 +24,15 @@ export function loadExpByUser(id) {
     dispatch({
       type: LOAD_USER_EXP,
       payload: experiencesApi.getUserExp(id)
+    });
+  };
+}
+
+export function addImageToExp(id, image) {
+  return dispatch => {
+    dispatch({
+      type: ADD_IMAGE_TO_EXP,
+      payload: experiencesApi.postImage(id, image)
     });
   };
 }

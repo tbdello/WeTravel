@@ -14,5 +14,8 @@ export default {
   },
   post(exp) {
     return request.post(`${URL}`, exp);
+  },
+  postImage(id, image) {
+    return request.post(`${URL}/${id}/images`, image);
   }
 };

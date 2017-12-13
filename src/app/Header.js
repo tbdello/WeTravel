@@ -12,7 +12,7 @@ class Header extends PureComponent {
           <span><NavLink to="/home">Home</NavLink></span>&nbsp;
           <span><NavLink to="/search">Search</NavLink></span>&nbsp;
           <span><NavLink to="/upload">Upload</NavLink></span>&nbsp;
-          
+          <span><NavLink to="/MyExperiences">My Experiences</NavLink></span>&nbsp;
         </nav>
       </header>
     );
