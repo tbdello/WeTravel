@@ -13,7 +13,7 @@ export function experiences(state=[], { type, payload }) {
     case EXPERIENCE_ADD:
       return [...state, payload];
     case ADD_IMAGE_TO_EXP:
-      return [...state, payload]; 
+      return state.map(exp => exp._id === payload._id ? { ...exp, images: [...exp.images, payload.image] } : exp); 
     default:
       return state;
   }

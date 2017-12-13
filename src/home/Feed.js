@@ -16,11 +16,11 @@ class Feed extends PureComponent {
       <div>
         <ul>
           {this.props.feed.map(exp =>(
-            <div>
-              <li key={exp._id}>
+            <div key={exp._id}>
+              <div>
                 <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
                 </h5></Link>
-              </li>
+              </div>
               {exp.images[0] && <img src={exp.images[0].imageURI} alt={exp.images[0].caption}/>}
             </div>
           ))}

@@ -11,7 +11,7 @@ export function loadExp(id) {
 }
 
 export function addExperience(exp) {
-  return (dispatch, getState) => {
+  return dispatch => {
     dispatch({
       type: EXPERIENCE_ADD,
       payload: experiencesApi.post(exp)
@@ -20,19 +20,19 @@ export function addExperience(exp) {
 }
 
 export function loadExpByUser(id) {
-  return dispatch => {
-    dispatch({
-      type: LOAD_USER_EXP,
-      payload: experiencesApi.getUserExp(id)
-    });
+  return {
+    type: LOAD_USER_EXP,
+    payload: experiencesApi.getUserExp(id)
   };
 }
 
 export function addImageToExp(id, image) {
-  return dispatch => {
-    dispatch({
-      type: ADD_IMAGE_TO_EXP,
-      payload: experiencesApi.postImage(id, image)
-    });
+  return {
+    type: ADD_IMAGE_TO_EXP,
+    payload: experiencesApi.postImage(id, image)
+      .then(image => ({
+        _id: id,
+        image
+      }))
   };
 }
