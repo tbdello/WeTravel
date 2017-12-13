@@ -1,21 +1,25 @@
 import React, { PureComponent } from 'react';
-//import Feed from './Feed';
 import { connect } from 'react-redux';
 import { loadExpByUser } from '../experience/actions';
-import PostedExp from './PostedExp';
+import { Link } from 'react-router-dom';
 
 class Home extends PureComponent {
   componentDidMount() {
     this.props.loadExpByUser(this.props.user._id);
   }
-
   render() {
+    const expByUser = this.props.user.experiences;
     return (
       <div>
-        <h1>Hey {this.props.user.name}</h1>
-        {/* <Feed/> */}
-        {this.props.user.experiences.length !== 0 && <PostedExp/>}
-      </div>
+        <ul>
+          <h4>Here are Experiences you've shared</h4>
+          {expByUser.map(exp =>(
+            <li key={exp._id}>
+              <Link to={`experiences/${exp._id}`}> <h5>{exp.title}</h5></Link>
+            </li>
+          ))}
+        </ul> 
+      </div>   
     );
   }
 }

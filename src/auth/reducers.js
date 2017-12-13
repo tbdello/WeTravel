@@ -7,6 +7,8 @@ export function user(state = null, { type, payload }) {
   switch(type) {
     case ACTIONS.SET_CURRENT_USER:
       return payload;
+    case ACTIONS.LOAD_USER_EXP:
+      return Object.assign(state, { experiences: payload });
     case ACTIONS.LOGOUT:
     case ACTIONS.AUTH_FAILED:
       return null;

@@ -8,5 +8,11 @@ export default {
   },
   get(id) {
     return request.get(`${URL}/${id}`);
+  },
+  getUserExp(id) {
+    return request.get(`${URL}/user/${id}`);
+  },
+  post(exp) {
+    return request.post(`${URL}`, exp);
   }
 };
