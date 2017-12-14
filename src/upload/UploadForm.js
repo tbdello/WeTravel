@@ -1,35 +1,30 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { onSubmit } from './actions';
+// import { onSubmit } from './actions';
 import { connect } from 'react-redux';
+import uploadApi from '../services/uploadApi';
 class UploadForm extends PureComponent {
   render() {
     return(
       <form
-        onSubmit={async event => {
+        encType="multipart/form-data"
+        name="myForm"
+        onSubmit={event => {
           event.preventDefault();
           const form = event.target;
-          console.log(form.files);
-          // const { image, caption } = form.elements;
-
-          // try {
-          //   await getSignedRequest(image.value);
-          //   form.reset();
-          //   image.focus();
-          //   caption.focus();
-          // } catch (err) {
-          //   throw err;
-          // }
+          const formData = new FormData(form);
+          uploadApi.post(formData);
         }}
       >
        
         <input
           type="file"
           name="image"
+          accept=".jpg, .jpeg, .png, .svg" 
           placeholder="Insert file"
         />
         
-        <input name="caption" placeholder="Enter caption" />
+        <input type="text" name="caption" placeholder="Enter caption" />
        
         <button type="submit">Submit</button>
       </form>
@@ -47,5 +42,5 @@ UploadForm.propTypes = {
   
 export default connect(
   state => ({ user: state.auth.user }),
-  { onSubmit }
+  // { onSubmit }
 )(UploadForm);

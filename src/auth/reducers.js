@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import * as actions from './constants';
+import * as ACTIONS from './constants';
 
 export default (state = {}, action) => combineReducers({ user, token, error, checkedToken })(state, action);
 
 export function user(state = null, { type, payload }) {
   switch(type) {
-    case actions.SET_CURRENT_USER:
+    case ACTIONS.SET_CURRENT_USER:
       return payload;
-    case actions.LOGOUT:
-    case actions.AUTH_FAILED:
+    case ACTIONS.LOAD_USER_EXP:
+      return Object.assign(state, { experiences: payload });
+    case ACTIONS.LOGOUT:
+    case ACTIONS.AUTH_FAILED:
       return null;
     default:
       return state;
@@ -17,10 +19,10 @@ export function user(state = null, { type, payload }) {
 
 export function token(state = null, { type, payload }) {
   switch(type) {
-    case actions.GOT_TOKEN:
+    case ACTIONS.GOT_TOKEN:
       return payload;
-    case actions.LOGOUT:
-    case actions.AUTH_FAILED:
+    case ACTIONS.LOGOUT:
+    case ACTIONS.AUTH_FAILED:
       return null;
     default:
       return state; 
@@ -29,11 +31,11 @@ export function token(state = null, { type, payload }) {
 
 export function error(state = null, { type, payload }) {
   switch(type) {
-    case actions.AUTH_FAILED:
+    case ACTIONS.AUTH_FAILED:
       return payload;
-    case actions.LOGOUT:
-    case actions.GOT_TOKEN:
-    case actions.SET_CURRENT_USER:
+    case ACTIONS.LOGOUT:
+    case ACTIONS.GOT_TOKEN:
+    case ACTIONS.SET_CURRENT_USER:
       return null;
     default:
       return state;
@@ -42,9 +44,9 @@ export function error(state = null, { type, payload }) {
 
 export function checkedToken(state = false, { type, payload }) {
   switch(type) {
-    case actions.CHECKED_TOKEN:
-    case actions.SET_CURRENT_USER:
-    case actions.AUTH_FAILED:
+    case ACTIONS.CHECKED_TOKEN:
+    case ACTIONS.SET_CURRENT_USER:
+    case ACTIONS.AUTH_FAILED:
       return true;
     default:
       return state;

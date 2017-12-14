@@ -31,7 +31,6 @@ export function signin(credentials) {
       })
       .then(() => authApi.getUser())
       .then(({ user }) => {
-        console.log('we are in signin and the user is:', user);
         return dispatch({ type: actions.SET_CURRENT_USER, payload: user });
       })
       .catch(error => {

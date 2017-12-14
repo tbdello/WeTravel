@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux';
-import { IMAGE_ADD, IMAGE_ERROR } from './constants';
+export const IMAGE_ADD = 'IMAGE_ADD';
 export function images(state = [], { type, payload }) {
   switch(type) {
     case IMAGE_ADD:
