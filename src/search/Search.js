@@ -1,36 +1,51 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
+import { loadSearch } from './actions';
 
 class Search extends PureComponent {
+    
+  handleSearch = event => {
+    event.preventDefault();  
+    const { elements } = event.target;
+    const query = `?location=${elements.location.value}&tag=${elements.tag.value}`;
+    this.props.loadSearch(query);
+  }
 
 
   render() {
-    const searchedExp = this.props.exp.find(exp => exp._id === this.props.id);
-    if (!searchedExp) return <div>no such experience has been posted yet</div>;
-
+    
     return (
       <div>
-        <h1>Hey {this.props.user.name} Welcome to Experience page</h1>
-        <h3>title is: {searchedExp.title}</h3>
-        <h5>Location:  {searchedExp.location} </h5>
-        {(searchedExp.images)
-          ? (<ul>
-            {searchedExp.images.map(image => (
-              <li key={image._id}>
-                <img src={image.imageURI} alt={image.caption} />
-                <h5> {image.caption} </h5>
-              </li>
-            ))}
-          </ul>)
-          : <div> No images uploaded yet </div>
-        }
+        <h1>Hey {this.props.user.name} Please enter your Search</h1>
+        <form onSubmit={this.handleSearch}>
+          <input name="location" placeholder="location"/>
+          <input name="tag" placeholder="tag"/>
+          <button type="submit">Search</button>
+        </form> 
+
+        {(this.props.search)
+          ? <div>
+            <ul>
+              {this.props.search.map(exp => (
+                <div key={exp._id}>
+                  <div>
+                    <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
+                    </h5></Link>
+                  </div>
+                  {exp.images[0] && <img src={exp.images[0].imageURI} alt={exp.images[0].caption} />}
+                </div>
+              ))}
+            </ul>
+          </div>
+          :<div> No results </div>
+        }        
       </div>
     );
   }
 }
 
 export default connect(
-  state => ({ user: state.auth.user, exp: state.experiences }),
-  {  }
+  state => ({ user: state.auth.user, exp: state.experiences, search: state.search }),
+  { loadSearch }
 )(Search); 
