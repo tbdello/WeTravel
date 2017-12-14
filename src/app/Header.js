@@ -1,18 +1,19 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import '../mystyles.css';
 
 class Header extends PureComponent {
   
   render() {
     return (
-      <header>
+      <header className="hero">
         <h1>iTravel</h1>
-        <nav>
-          <span><NavLink to="/home">Home</NavLink></span>&nbsp;
-          <span><NavLink to="/search">Search</NavLink></span>&nbsp;
-          <span><NavLink to="/upload">Upload</NavLink></span>&nbsp;
-          <span><NavLink to="/MyExperiences">My Experiences</NavLink></span>&nbsp;
+        <nav className="breadcrumb is-right" aria-label="breadcrumbs">
+          <li><NavLink to="/home">Home</NavLink></li>&nbsp;
+          <li><NavLink to="/search">Search</NavLink></li>&nbsp;
+          <li><NavLink to="/upload">Upload</NavLink></li>&nbsp;
+          <li><NavLink to="/MyExperiences">My Experiences</NavLink></li>&nbsp;
         </nav>
       </header>
     );
