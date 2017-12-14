@@ -8,7 +8,6 @@ class Home extends PureComponent {
     return (
       <div>
         <h1>Hey {this.props.user.name}</h1>
-        <h4>Feed:</h4>
         <Feed/>
       </div>
     );
