@@ -5,12 +5,10 @@ export default class Credentials extends React.PureComponent{
   handleSubmit = (e) => {
     e.preventDefault();
     const { elements } = e.target;
-    console.log('elements are', elements);
     const data = {};
     if(this.props.allowName) data.name = elements.name.value ;
     data.email = elements.email.value;
     data.password = elements.password.value;
-    console.log('data is', data);
     this.props.submit(data);
   }
 
