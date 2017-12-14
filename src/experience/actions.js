@@ -1,5 +1,6 @@
 import experiencesApi from '../services/experiences-Api';
 import { EXPERIENCE_LOAD, DELETE_EXP, EXPERIENCE_ADD, LOAD_USER_EXP, ADD_IMAGE_TO_EXP } from './reducers';
+import uploadApi from '../services/uploadApi';
 
 export function loadExp(id) {
   return {
@@ -22,17 +23,6 @@ export function loadExpByUser(id) {
   };
 }
 
-export function addImageToExp(id, image) {
-  return {
-    type: ADD_IMAGE_TO_EXP,
-    payload: experiencesApi.postImage(id, image)
-      .then(image => ({
-        _id: id,
-        image
-      }))
-  };
-}
-
 export function deleteExp(id) {
   return async dispatch => {
     await dispatch({
@@ -43,5 +33,16 @@ export function deleteExp(id) {
       type: LOAD_USER_EXP,
       payload: experiencesApi.getUserExp()
     });
+  };
+}
+
+export function addImageToExp(id, data) {
+  return {
+    type: ADD_IMAGE_TO_EXP,
+    payload: experiencesApi.postImage(id, data)
+      .then(image => ({
+        _id: id,
+        image
+      }))
   };
 }
