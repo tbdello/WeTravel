@@ -6,6 +6,7 @@ import { loadSearch } from './actions';
 class Search extends PureComponent {
     
   handleSearch = event => {
+    console.log('searching');
     event.preventDefault();  
     const { elements } = event.target;
     const query = `?location=${elements.location.value}&tag=${elements.tag.value}`;
@@ -17,14 +18,14 @@ class Search extends PureComponent {
     
     return (
       <div>
-        <h1>Hey {this.props.user.name} Please enter your Search</h1>
+        <h1>Hey {this.props.user.name}<br/> Please enter your Search</h1>
         <form onSubmit={this.handleSearch}>
           <input name="location" placeholder="location"/>
           <input name="tag" placeholder="tag"/>
           <button type="submit">Search</button>
         </form> 
 
-        {(this.props.search)
+        {(this.props.search.length !== 0)
           ? <div>
             <ul>
               {this.props.search.map(exp => (
@@ -46,6 +47,6 @@ class Search extends PureComponent {
 }
 
 export default connect(
-  state => ({ user: state.auth.user, exp: state.experiences, search: state.search }),
+  state => ({ user: state.auth.user, search: state.search }),
   { loadSearch }
 )(Search); 
