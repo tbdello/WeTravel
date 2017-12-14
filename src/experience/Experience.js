@@ -35,30 +35,16 @@ class Experience extends PureComponent {
     this.props.addImageToExp(this.props.id, image);
   }
 
-  searchedExp = () => {
-    return this.props.exp.find(exp => exp._id === this.props.id);
-  }
+  
     
   
   render() {
-    
+    const searchedExp = this.props.exp.find(exp => exp._id === this.props.id);
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
       <div>
-        <h1>Hey {this.props.user.name} Welcome to Experience page</h1>
         <h3>title is: {this.searchedExp().title}</h3>
         <h5>Location:  {this.searchedExp().location} </h5> 
-        {/* {(this.searchedExp().images)
-          ?(<ul>
-            {this.searchedExp().images.map(image => (
-              <li key={image._id}>
-                <img src ={image.imageURI} alt={image.caption}/>
-                <h5> {image.caption} </h5>
-              </li>
-            ))}
-          </ul>)
-          :<div> No images uploaded yet </div>
-        } */}
         <StyledDiv>
           {(this.searchedExp().images)
             ?(<div>
