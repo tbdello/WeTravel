@@ -4,7 +4,7 @@ const URL = '/experiences';
 
 export default {
   search(query = '') {
-    return request.get(`${URL}/search/?${query}`);
+    return request.get(`${URL}/search/${query}`);
   },
   get(id) {
     return request.get(`${URL}/${id}`);
