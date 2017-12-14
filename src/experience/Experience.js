@@ -45,6 +45,11 @@ class Experience extends PureComponent {
           :<div> No images uploaded yet </div>
         }
         <div>
+          Tags:
+          {this.searchedExp().tags && this.searchedExp().tags.map(tag =>(<span>  {tag} </span>))}
+        </div>
+        
+        <div>
           <h4>Time to add some images!</h4>
           <form onSubmit={this.handleImgPost}> 
             <input name="imageUri" placeholder="ImageUrI"/>
