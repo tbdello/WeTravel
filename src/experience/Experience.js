@@ -26,7 +26,6 @@ class Experience extends PureComponent {
   
   render() {
     
-    
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
       <div>
@@ -46,7 +45,7 @@ class Experience extends PureComponent {
         }
         <div>
           Tags:
-          {this.searchedExp().tags && this.searchedExp().tags.map(tag =>(<span>  {tag} </span>))}
+          {this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
         </div>
         
         <div>

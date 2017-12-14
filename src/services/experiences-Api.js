@@ -9,13 +9,16 @@ export default {
   get(id) {
     return request.get(`${URL}/${id}`);
   },
-  getUserExp(id) {
-    return request.get(`${URL}/user/${id}`);
+  getUserExp() {
+    return request.get(`${URL}/user`);
   },
   post(exp) {
     return request.post(`${URL}`, exp);
   },
   postImage(id, image) {
     return request.post(`${URL}/${id}/images`, image);
+  },
+  delete(id) {
+    return request.delete(`${URL}/${id}`);
   }
 };
