@@ -14,10 +14,9 @@ class Auth extends PureComponent {
 
 
     return (
-      <CenteredDiv>
+      <CenteredDiv className="container">
         <h1>Welcome!</h1>
         <h5>
-          This is iTravel
           <Link to="/auth/signin" > sign In Here </Link> if You already have an account with us or<Link to="/auth/signup" > signUp here </Link> to make a new one
         </h5>
         <Switch>
@@ -28,6 +27,7 @@ class Auth extends PureComponent {
             <Credentials action="Sign Up" submit={this.props.signup} allowName={true}/>
           )}/>
         </Switch>
+        <p> iTravel is a website for people to share their travel experiences and connect with other travelers. Share your latest trip, connect with fellow travelers or browse for inspiration for your next trip!</p>
         {this.props.error && <Error>{ this.props.error }</Error>}
       </CenteredDiv>
     );

@@ -19,7 +19,6 @@ export class UploadForm extends PureComponent {
       user: this.props.user._id,
       tags: elements.tags.value.split(' ')
     };
-    console.log(exp.tags);
     this.props.addExperience(exp);
     this.setState({ redirect: true });
   }

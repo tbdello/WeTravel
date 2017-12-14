@@ -3,17 +3,20 @@ export const FEED_LOAD = 'FEED_LOAD';
 export const EXPERIENCE_ADD = 'EXPERIENCE_ADD';
 export const LOAD_USER_EXP = 'LOAD_USER_EXP';
 export const ADD_IMAGE_TO_EXP = 'ADD_IMAGE_TO_EXP';
+export const DELETE_EXP = 'DELETE_EXP';
 
 export function experiences(state=[], { type, payload }) {
   switch(type) {
     case LOAD_USER_EXP:
-      return [...state, ...payload];
+      return payload;
     case EXPERIENCE_LOAD:
-      return  [...state, payload];
+      return  [...state.filter(exp=>exp._id !== payload._id), payload];
     case EXPERIENCE_ADD:
-      return [...state, payload];
+      return state;
     case ADD_IMAGE_TO_EXP:
-      return state.map(exp => exp._id === payload._id ? { ...exp, images: [...exp.images, payload.image] } : exp); 
+      return state.map(exp => exp._id === payload._id ? { ...exp, images: [...exp.images, payload.image] } : exp);
+    case DELETE_EXP:
+      return [...state.filter(exp => exp._id !== payload)]; 
     default:
       return state;
   }
