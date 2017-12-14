@@ -7,7 +7,7 @@ This app relies on a server, found at:
 
 https://github.com/tbdello/i-travel-server
 
-This app also requires npm modules, : `npm i`
+This app also requires npm modules, enter: `npm i`
 
 in the terminal before running. The default port is 3000.
 
