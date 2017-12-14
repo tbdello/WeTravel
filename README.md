@@ -1,15 +1,35 @@
 # I-Travel
 An app that lets you explore the wide world of travel with pictures and stories from people who have traveled there. 
 
+## Requirements
+
+MongoDB, latest stable version of Node.js 
+
 ## Installation
+
+1. Install [Node.js](https://nodejs.org/en/).
+
+    ```
+    brew install node
+    ```
+
+2. Clone repository and change directory.
+
+    ```
+    git clone https://github.com/tbdello/i-travel 
+    ```
+
+3. Install dependencies.
+
+    ```
+    npm install
+    ```
 
 This app relies on a server, found at:
 
 https://github.com/tbdello/i-travel-server
 
-This app also requires npm modules, enter: `npm i`
-
-in the terminal before running. The default port is 3000.
+The default port is 3000.
 
 ## Usage
 
@@ -26,10 +46,6 @@ and then open a browser to: `http://localhost:3000/`
 1. Push to the branch: `git push origin my-new-feature`
 1. Submit a pull request 
 
-## History
-
-This was created over the course of one week by students of Alchemy Code Labs.
-
 ## Credits
 
 Created by: *Andrew Bodey, Maryus Martsyalius, Eli Speigel*
@@ -37,17 +53,3 @@ Created by: *Andrew Bodey, Maryus Martsyalius, Eli Speigel*
 ## License
 
 MIT
-
-## Consistency in the Code
-1. good: fn()  
-    bad: fn ()
-1. good: let b == 'str';
-   
-    bad: let b=='str';
-1. good: function((power, exp) => {
-        })
-        
-    bad: function((power, exp) =>{
-        })
-
-1. one line space between unlike items
