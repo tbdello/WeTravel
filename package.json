@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bulma": "^0.6.1",
     "lodash": "^4.17.4",
+    "node-sass-chokidar": "0.0.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -15,6 +17,8 @@
     "superagent": "^3.8.2"
   },
   "scripts": {
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "build-css": "node-sass-chokidar --include-path ./src/styles src/ -o src/",
     "copy": "rm -rf ../i-travel-server/public && cp -R ./build ../i-travel-server/public",
     "start": "react-scripts start",
     "build": "react-scripts build && npm run copy",
