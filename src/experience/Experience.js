@@ -27,11 +27,8 @@ class Experience extends PureComponent {
 
   handleImgPost = event =>{
     event.preventDefault();
-    const { elements } = event.target;
-    const image = {
-      imageURI: elements.imageUri.value,
-      caption: elements.caption.value,
-    };
+    const form = event.target;
+    const image = new FormData(form);
     this.props.addImageToExp(this.props.id, image);
   }
 
@@ -70,7 +67,12 @@ class Experience extends PureComponent {
         <div>
           <h4>Time to add some images!</h4>
           <form onSubmit={this.handleImgPost}> 
-            <input name="imageUri" placeholder="ImageUrI"/>
+            <input
+              type="file"
+              name="image"
+              accept=".jpg, .jpeg, .png, .svg" 
+              placeholder="Insert file"
+            />
             <input name="caption" placeholder="caption"/>
             <button type="submit">Add</button>
           </form> 

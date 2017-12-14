@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { signout } from '../auth/actions';
 
 class Header extends PureComponent {
   
@@ -13,6 +14,10 @@ class Header extends PureComponent {
           <li><NavLink to="/search">Search</NavLink></li>&nbsp;
           <li><NavLink to="/upload">Upload</NavLink></li>&nbsp;
           <li><NavLink to="/MyExperiences">My Experiences</NavLink></li>&nbsp;
+          { this.props.user 
+            ? <li><NavLink to="/" onClick={this.props.signout}>Logout</NavLink></li>
+            : <li><NavLink to="/auth/signin">Login</NavLink></li>
+          }
         </nav>
       </header>
     );
@@ -20,6 +25,6 @@ class Header extends PureComponent {
 }
 
 export default connect(
-  null,
-  null
+  state => ({ user: state.auth.user }),
+  { signout }
 )(Header);
