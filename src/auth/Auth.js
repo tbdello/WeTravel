@@ -15,11 +15,11 @@ class Auth extends PureComponent {
 
     return (
       <div className="container">
-        <section class="hero is-dark">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Welcome!</h1>
-              <h2 class="subtitle">
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">Welcome!</h1>
+              <h2 className="subtitle">
                 <Link to="/auth/signin"> Sign In Here </Link> if you already
                 have an account with us or <Link to="/auth/signup">
                   Sign Up here{' '}

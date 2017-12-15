@@ -18,13 +18,14 @@ export class UploadForm extends PureComponent {
       user: this.props.user._id,
       tags: elements.tags.value.split(' ')
     };
+    console.log('exp is', exp);
     this.props.addExperience(exp);
     this.setState({ redirect: true });
   };
 
   render() {
     return (
-      <div className="container">
+      <div>
         <section className="hero is-dark">
           <div className="hero-body">
             <div className="container">
@@ -37,61 +38,53 @@ export class UploadForm extends PureComponent {
             </div>
           </div>
         </section>
-        <div className="tile">
-          <form onSubmit={this.handleExpPost}>
-            <div className="field">
-              <div className="control">
-                <input
-                  name="name"
-                  className="input"
-                  type="text"
-                  placeholder="Name"
-                />
+        <div className="container">
+          <div className="tile">
+            <form onSubmit={this.handleExpPost}>
+              <div className="field">
+                <div className="control">
+                  <input
+                    name="title"
+                    className="input"
+                    type="text"
+                    placeholder="Title"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <div className="control">
-                <input
-                  name="title"
-                  className="input"
-                  type="text"
-                  placeholder="Title"
-                />
+              <div className="field">
+                <div className="control">
+                  <input
+                    name="description"
+                    className="input"
+                    type="text"
+                    placeholder="Description"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <div className="control">
-                <input
-                  name="description"
-                  className="input"
-                  type="text"
-                  placeholder="Description"
-                />
+              <div className="field">
+                <div className="control">
+                  <input
+                    name="location"
+                    className="input"
+                    type="text"
+                    placeholder="Location"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <div className="control">
-                <input
-                  name="location"
-                  className="input"
-                  type="text"
-                  placeholder="Location"
-                />
+              <div className="field">
+                <div className="control">
+                  <input
+                    name="tags"
+                    className="input"
+                    type="text"
+                    placeholder="Tags"
+                  />
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <div className="control">
-                <input
-                  name="tags"
-                  className="input"
-                  type="text"
-                  placeholder="Tags"
-                />
-              </div>
-            </div>
-            <button type="submit">Add</button>
-          </form>
-          {this.state.redirect && <Redirect to="/MyExperiences/" />}
+              <button type="submit">Add</button>
+            </form>
+            {this.state.redirect && <Redirect to="/MyExperiences" />}
+          </div>
         </div>
       </div>
     );

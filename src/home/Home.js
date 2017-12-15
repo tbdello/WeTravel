@@ -20,11 +20,11 @@ export class Home extends PureComponent {
   render() {
     return (
       <div>
-        <section class="hero is-dark">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">iTravel</h1>
-              <h2 class="subtitle">Slogan</h2>
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">iTravel</h1>
+              <h2 className="subtitle">Slogan</h2>
             </div>
           </div>
         </section>
@@ -32,16 +32,13 @@ export class Home extends PureComponent {
           <div className="column is-one-fifth">
             <div>
               <h2 className="title has-text-centered">{this.props.user.name}</h2>
-              <div className="image">
-                <figure className="image is-412x412">
-                  <img
-                    style={{ borderRadius: '50%', objectFit: 'cover' }}
-                    alt="avatar"
-                    src={this.props.user.imageURI || defaultImg}
-                  />
-                </figure>
+              <div style = {{ display: 'flex', justifyContent: 'center' }}>
+                <img
+                  style={{ borderRadius: '50%', width:'250px', height:'250px', objectFit: 'cover' }}
+                  alt="avatar"
+                  src={this.props.user.imageURI || defaultImg}
+                />
               </div>
-              <div></div>
               <div className="buttons is-centered">
                 <button
                   className="button"
@@ -56,34 +53,28 @@ export class Home extends PureComponent {
               </div>
             </div>
             <div>
-              <form onSubmit={this.handleUserUpdate}>
-                <div className="control">
-                  <div class="file">
-                    <label class="file-label">
+              {this.state.shouldDisplay &&
+                <form onSubmit={this.handleUserUpdate}>
+                  <div className="control">
+                    <div className="file">
                       <input
                         type="file"
                         name="image"
                         accept=".jpg, .jpeg, .png, .svg"
                       />
-                      <span class="file-cta">
-                        <span class="file-icon">
-                          <i class="fa fa-upload" />
-                        </span>
-                        <span class="file-label">Choose a file…</span>
-                      </span>
-                    </label>
+                    </div>
                   </div>
-                </div>
-                <div className="control">
-                  <input className="input" name="name" placeHolder="Name" />
-                </div>
-                <div className="control">
-                  <input className="input" name="email" placeHolder="E-mail" />
-                </div>
-                <div className="buttons is-centered">
-                  <button type="submit">Update</button>
-                </div>
-              </form>
+                  <div className="control">
+                    <input className="input" name="name" defaultValue={this.props.user.name} />
+                  </div>
+                  <div className="control">
+                    <input className="input" name="email" defaultValue={this.props.user.name} />
+                  </div>
+                  <div className="buttons is-centered">
+                    <button type="submit">Update</button>
+                  </div>
+                </form>
+              }
             </div>
           </div>
           <div className="column is-four-fifths is-light">

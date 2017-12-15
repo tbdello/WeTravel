@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadSearch } from './actions';
+import stock from '../home/favicon.png';
 
 export class Search extends PureComponent {
     
@@ -9,20 +10,19 @@ export class Search extends PureComponent {
     console.log('searching');
     event.preventDefault();
     const { elements } = event.target;
-    const query = `?location=${elements.location.value}&tag=${
-      elements.tag.value
-    }`;
+    const query = `?location=${elements.location.value}&tag=${elements.tag.value}`;
+    console.log('query is', query);
     this.props.loadSearch(query);
   };
 
   render() {
     return (
       <div>
-        <section class="hero is-dark">
-          <div class="hero-body">
-            <div class="container">
-              <h1 class="title">Hey {this.props.user.name}</h1>
-              <h2 class="subtitle">Please enter your Search</h2>
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">Hey {this.props.user.name}</h1>
+              <h2 className="subtitle">Please enter your Search</h2>
             </div>
           </div>
         </section>
@@ -31,13 +31,13 @@ export class Search extends PureComponent {
             <div className="field">
               <label className="label">Location</label>
               <div className="control">
-                <input className="location" placeholder="location" />
+                <input name="location" placeholder="location" />
               </div>
             </div>
             <div className="field">
               <label className="label">Tag</label>
               <div className="control">
-                <input className="tag" placeholder="tag" />
+                <input name="tag" placeholder="tag" />
               </div>
             </div>
             <button type="submit">Search</button>
@@ -45,21 +45,22 @@ export class Search extends PureComponent {
         </div>
         {this.props.search.length !== 0 ? (
           <div>
-            <ul>
-              {this.props.search.map(exp => (
-                <div key={exp._id}>
-                  <div>
-                    <Link to={`experiences/${exp._id}`}>
-                      {' '}
-                      <h5>{exp.title}</h5>
-                    </Link>
-                  </div>
-                  {exp.images[0] && (
-                    <img
-                      src={exp.images[0].imageURI}
-                      alt={exp.images[0].caption}
-                    />
-                  )}
+            <ul style={{ display: 'flex' }}>
+              {this.props.search.map((exp, i) => (
+                <div key={i}>
+                  {exp.images && exp.images[0] && 
+              <div>
+                <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '200px',height: '120px', margin: '10px' }} src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>
+              </div>
+                  }
+                  {exp.images && !exp.images[0] &&
+              <div>
+                <div>
+                  <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '150px',height: '120px', margin: '10px' }} src={stock} alt='none'/></Link>
+                </div>
+                <p style={{ textAlign:'center' }}>{exp.location}</p>
+              </div>
+                  }
                 </div>
               ))}
             </ul>

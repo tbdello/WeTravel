@@ -75,7 +75,7 @@ export class Experience extends PureComponent {
 
     return (
       <div>
-        <section className="hero is-medium is-dark is-bold">
+        <section className="hero is-dark is-bold">
           <div className="hero-body">
             <div className="container">
               <h1 className="title">{this.searchedExp().title}</h1>
