@@ -17,7 +17,7 @@ class Auth extends PureComponent {
       <CenteredDiv className="container">
         <h1>Welcome!</h1>
         <h5>
-          <Link to="/auth/signin" > Sign In Here </Link> if you already have an account with us or<Link to="/auth/signup" > Sign Up here </Link>
+          <Link to="/auth/signin" > Sign In Here </Link> if you already have an account with us or<Link to="/auth/signup" > Sign Up Here </Link>
         </h5>
         <Switch>
           <Route path="/auth/signin" component={() => (

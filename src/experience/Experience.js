@@ -98,14 +98,14 @@ export class Experience extends PureComponent {
                   {i !== 0 && <StyledButton className="button" onClick ={()=> this.handleClick(-1)}> ◀</StyledButton>}
                   
                   <StyledImgDiv>
-                    <img style={{ width:'100%' }} src={img.imageURI} alt={img.caption}/>
+                    <img style={{ objectFit:'cover' }} src={img.imageURI} alt={img.caption}/>
                     <p style={{ marginLeft: '40%' }}> {img.caption} </p>
                   </StyledImgDiv>
                   <div>
-                    { this.searchedExp().user.email === this.props.user.email &&<DeleteButton className ="button" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
+                    { this.searchedExp().user.email === this.props.user.email &&<DeleteButton className ="delete" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
                     }
-                    { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
                   </div>
+                  { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
                 </ImgDiv>
               ))}
             </div>)
@@ -118,11 +118,10 @@ export class Experience extends PureComponent {
           <h5> Have questions? shoot {this.searchedExp().user.name} an <a href={`mailto:${this.searchedExp().user.email}?Subject=Friend%20From%20iTravel`} target="_top">email</a></h5>
         </div>
 
-        <div>
+        <div style={{ border:'1px solid grey' }}>
           {this.searchedExp().comments && this.searchedExp().comments.map((com, i) => (
             <div key={i}>
-              <h4>{com.user}</h4>
-              <p>{com.comment}</p>
+              <p><span style={{ fontWeight:'bold' }}>{com.user} </span>{com.comment}</p>
             </div>))}
           <form onSubmit={this.handleCommentPost}> 
             <input name="comment" placeholder="Enter Your Comment Here"/>
@@ -136,17 +135,20 @@ export class Experience extends PureComponent {
 
 const StyledButton = styled.div`
 margin-top: 30%;
+margin-right: 2%;
 `;
 
 const StyledImgDiv = styled.div`
+height: '30rem'
+margin: auto;
 background-color: white;
 display: flex;
 flex-direction: column;
 justify-content: center;
-
 `;
 const StyledDiv = styled.div`
 width: 70%;
+margin: auto;
 display: 'flex';
 justify-content: flex-center;
 
