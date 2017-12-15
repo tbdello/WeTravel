@@ -17,25 +17,35 @@ class Search extends PureComponent {
   render() {
     return (
       <div>
-        <h1>
-          Hey {this.props.user.name}
-          <br /> Please enter your Search
-        </h1>
-        <form onSubmit={this.handleSearch}>
-          <div className="field">
-            <label className="label">Location</label>
-            <div className="control">
-              <input className="location" placeholder="location" />
+        <section class="hero is-dark">
+          <div class="hero-body">
+            <div class="container">
+              <h1 class="title">
+                Hey {this.props.user.name}
+              </h1>
+              <h2 class="subtitle">
+                Please enter your Search
+              </h2>
             </div>
           </div>
-          <div className="field">
-            <label className="label">Tag</label>
-            <div className="control">
-              <input className="tag" placeholder="tag" />
+        </section>
+        <div className="tile">
+          <form onSubmit={this.handleSearch}>
+            <div className="field">
+              <label className="label">Location</label>
+              <div className="control">
+                <input className="location" placeholder="location" />
+              </div>
             </div>
-          </div>
-          <button type="submit">Search</button>
-        </form>
+            <div className="field">
+              <label className="label">Tag</label>
+              <div className="control">
+                <input className="tag" placeholder="tag" />
+              </div>
+            </div>
+            <button type="submit">Search</button>
+          </form>
+        </div>
         {this.props.search.length !== 0 ? (
           <div>
             <ul>

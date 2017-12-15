@@ -26,18 +26,33 @@ export class UploadForm extends PureComponent {
   render() {
     return (
       <div>
-        <div>
+        <div className="tile">
           <form onSubmit={this.handleExpPost}>
             <div className="field">
-              <label className="label">Name</label>
               <div className="control">
-                <input class="input" type="text" placeholder="Name"/>
+                <input name="name" className="input" type="text" placeholder="Name"/>
               </div>
             </div>
-            <input className="input" name="title" placeholder="title"/>
-            <input name="description" placeholder="description"/>
-            <input name="location" placeholder="location"/>
-            <input name="tags" placeholder="tags"/>
+            <div className="field">
+              <div className="control">
+                <input name="title" className="input" type="text" placeholder="Title"/>
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                <input name="description" className="input" type="text" placeholder="Description"/>
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                <input name="location" className="input" type="text" placeholder="Location"/>
+              </div>
+            </div>
+            <div className="field">
+              <div className="control">
+                <input name="tags" className="input" type="text" placeholder="Tags"/>
+              </div>
+            </div>
             <button type="submit">Add</button>
           </form> 
           { this.state.redirect && (<Redirect to="/MyExperiences"/>) }
