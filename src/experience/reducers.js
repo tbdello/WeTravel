@@ -5,6 +5,7 @@ export const LOAD_USER_EXP = 'LOAD_USER_EXP';
 export const ADD_IMAGE_TO_EXP = 'ADD_IMAGE_TO_EXP';
 export const DELETE_EXP = 'DELETE_EXP';
 export const DELETE_IMAGE_FROM_EXP = 'DELETE_IMAGE_FROM_EXP';
+export const  ADD_COMMENT_TO_EXP = ' ADD_COMMENT_TO_EXP';
 
 export function experiences(state=[], { type, payload }) {
   switch(type) {
@@ -18,6 +19,9 @@ export function experiences(state=[], { type, payload }) {
       return state;
     case ADD_IMAGE_TO_EXP:
       return state.map(exp => exp._id === payload._id ? { ...exp, images: [...exp.images, payload.image] } : exp);
+    case ADD_COMMENT_TO_EXP:
+      console.log(payload);
+      return state.map(exp => exp._id === payload.exp ? { ...exp, comments: [...exp.comments, payload.comment] } : exp);
     case DELETE_EXP:
       return [...state.filter(exp => exp._id !== payload)]; 
     default:
