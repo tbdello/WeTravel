@@ -23,7 +23,7 @@ class Home extends PureComponent {
       <div>
         <div>
           <img style={{ borderRadius: '50%', objectFit:'cover', width:'100px', height:'100px' }} alt='avatar' src={this.props.user.imageURI|| defaultImg}/>
-          <h1>Hey {this.props.user.name}</h1>
+          <h1>Hello {this.props.user.name}</h1>
           <button className="button" onClick={()=>{
             this.state.shouldDisplay
               ? this.setState({ shouldDisplay: false })

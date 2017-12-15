@@ -57,7 +57,10 @@ class Experience extends PureComponent {
   render() { 
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
-      <div> 
+      <div>
+        <h3>You are viewing {this.searchedExp().user.name}'s album</h3>
+        <h3>Title is: {this.searchedExp().title}</h3>
+        <h5>Location:  {this.searchedExp().location} </h5> 
         { this.searchedExp().user.email === this.props.user.email && <button className="button" onClick={()=>{
           this.state.shouldDisplay
             ? this.setState({ shouldDisplay: false })
@@ -90,7 +93,8 @@ class Experience extends PureComponent {
                     <p style={{ marginLeft: '40%' }}> {img.caption} </p>
                   </StyledImgDiv>
                   <div>
-                    <DeleteButton className ="button" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
+                    { this.searchedExp().user.email === this.props.user.email &&<DeleteButton className ="button" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
+                    }
                     { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
                   </div>
                 </ImgDiv>
