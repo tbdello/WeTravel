@@ -55,12 +55,11 @@ class Experience extends PureComponent {
   }
     
   render() { 
-    if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
+    if(!this.searchedExp()) return <div>Page not avalible</div>;
+
     return (
       <div>
-        <h3>You are viewing {this.searchedExp().user.name}'s album</h3>
-        <h3>Title is: {this.searchedExp().title}</h3>
-        <h5>Location:  {this.searchedExp().location} </h5> 
+        <h3>You are viewing {this.searchedExp().user.name}'s experience in {this.searchedExp().location}</h3>
         { this.searchedExp().user.email === this.props.user.email && <button className="button" onClick={()=>{
           this.state.shouldDisplay
             ? this.setState({ shouldDisplay: false })
@@ -102,11 +101,11 @@ class Experience extends PureComponent {
             </div>)
             :<div> No images uploaded yet </div>
           }
-          <h5>Location:  {this.searchedExp().location} </h5>
           <h5> {this.searchedExp().description} </h5>
         </StyledDiv>
         <div>
           Tags:{this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
+          <h5> Have questions? shoot {this.searchedExp().user.name} an <a href={`mailto:${this.searchedExp().user.email}?Subject=Friend%20From%20iTravel`} target="_top">email</a></h5>
         </div>
       </div>
     );
