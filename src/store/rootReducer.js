@@ -3,7 +3,6 @@ import { error, loading } from '../app/reducers';
 import { feed } from '../home/reducers';
 import { experiences } from '../experience/reducers';
 import { search } from '../search/reducers';
-import { images } from '../upload/reducers';
 
 import auth from '../auth/reducers';
 
@@ -13,6 +12,5 @@ export default combineReducers({
   feed,
   loading,
   search,
-  error,
-  images
+  error
 });

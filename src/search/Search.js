@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadSearch } from './actions';
 
-class Search extends PureComponent {
+export class Search extends PureComponent {
+    
   handleSearch = event => {
     console.log('searching');
     event.preventDefault();

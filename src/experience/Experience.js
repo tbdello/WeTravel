@@ -1,12 +1,14 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { loadExp, DeleteImage, addImageToExp } from './actions';
+import { loadExp, DeleteImage, addImageToExp, addCommentToExp } from './actions';
 import styled from 'styled-components';
 
-class Experience extends PureComponent {
-  state = {
-    index: 0
-  };
+
+export class Experience extends PureComponent {
+
+  state = { 
+    index: 0, 
+  }
 
   componentDidMount() {
     this.props.loadExp(this.props.id);
@@ -22,22 +24,28 @@ class Experience extends PureComponent {
   };
 
   handleArrows = ({ key }) => {
-    console.log(key);
-    if (key === 'ArrowLeft' && this.state.index !== 0) this.handleClick(-1);
-    if (
-      key === 'ArrowRight' &&
-      this.state.index !== this.searchedExp().images.length - 1
-    )
-      this.handleClick(1);
-  };
+    if(key ==='ArrowLeft' && this.state.index !== 0) this.handleClick(-1);
+    if(key ==='ArrowRight' && this.state.index !== this.searchedExp().images.length -1) this.handleClick(1);
+  }
 
-  handleClick = value => {
+  handleClick = (value) => {
     const newState = {
       ...this.state,
       index: this.state.index + value
     };
     this.setState(newState);
   };
+
+  handleCommentPost = event =>{
+    event.preventDefault();
+    const { elements } = event.target;
+    const post = {
+      user: this.props.user.name,
+      comment: elements.comment.value
+    };
+    console.log('sending comment', post);
+    this.props.addCommentToExp(this.props.id, post);
+  }
 
   handleDelete = imageId => {
     this.props.DeleteImage(this.props.id, imageId);
@@ -56,8 +64,8 @@ class Experience extends PureComponent {
   };
 
   render() {
-    if (!this.searchedExp())
-      return <div>no such experience has been posted yet</div>;
+    if(!this.searchedExp()) return <div>Page not available</div>;
+
     return (
       <div>
         <section className="hero is-medium is-dark is-bold">
@@ -91,6 +99,19 @@ class Experience extends PureComponent {
             </div>
           </div>
         </section>
+  }
+    
+  render() { 
+
+    return (
+      <div>
+        <h3>You are viewing {this.searchedExp().user.name}'s experience in {this.searchedExp().location}</h3>
+        { this.searchedExp().user.email === this.props.user.email && <button className="button" onClick={()=>{
+          this.state.shouldDisplay
+            ? this.setState({ shouldDisplay: false })
+            : this.setState({ shouldDisplay: true });
+        }}> AddImage </button>
+        }
         <div>
           {this.state.shouldDisplay && (
             <form onSubmit={this.handleImgPost}>
@@ -150,18 +171,26 @@ class Experience extends PureComponent {
                   </div>
                 </ImgDiv>
               ))}
-            </div>
-          ) : (
-            <div> No images uploaded yet </div>
-          )}
-          <h5>Location: {this.searchedExp().location} </h5>
+            </div>)
+            :<div> No images uploaded yet </div>
+          }
           <h5> {this.searchedExp().description} </h5>
         </StyledDiv>
         <div>
-          Tags:{this.searchedExp().tags &&
-            this.searchedExp().tags.map((tag, i) => (
-              <span key={i}> {tag} </span>
-            ))}
+          Tags:{this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
+          <h5> Have questions? shoot {this.searchedExp().user.name} an <a href={`mailto:${this.searchedExp().user.email}?Subject=Friend%20From%20iTravel`} target="_top">email</a></h5>
+        </div>
+
+        <div>
+          {this.searchedExp().comments && this.searchedExp().comments.map((com, i) => (
+            <div key={i}>
+              <h4>{com.user}</h4>
+              <p>{com.comment}</p>
+            </div>))}
+          <form onSubmit={this.handleCommentPost}> 
+            <input name="comment" placeholder="Enter Your Comment Here"/>
+            <button type="submit">Post</button>
+          </form>
         </div>
       </div>
     );
@@ -198,5 +227,5 @@ const DeleteButton = styled.button`
 
 export default connect(
   state => ({ user: state.auth.user, exp: state.experiences }),
-  { loadExp, addImageToExp, DeleteImage }
-)(Experience);
+  { loadExp, addImageToExp, DeleteImage, addCommentToExp }
+)(Experience); 
