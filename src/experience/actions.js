@@ -1,5 +1,5 @@
 import experiencesApi from '../services/experiences-Api';
-import { EXPERIENCE_LOAD, DELETE_EXP, EXPERIENCE_ADD, LOAD_USER_EXP, ADD_IMAGE_TO_EXP } from './reducers';
+import { EXPERIENCE_LOAD, DELETE_EXP, EXPERIENCE_ADD, LOAD_USER_EXP, ADD_IMAGE_TO_EXP, DELETE_IMAGE_FROM_EXP } from './reducers';
 
 export function loadExp(id) {
   return {
@@ -43,5 +43,12 @@ export function addImageToExp(id, data) {
         _id: id,
         image
       }))
+  };
+}
+
+export function DeleteImage(id, imageId) {
+  return {
+    type: DELETE_IMAGE_FROM_EXP,
+    payload: experiencesApi.deleteImage(id, imageId).then(() => ({ exp: id,image:imageId }))
   };
 }
