@@ -38,4 +38,7 @@ export const request = {
   delete(url) {
     return wrap(superagent.delete(`${API_URL}${url}`));
   },
+  put(url, data){
+    return wrap(superagent.put(`${API_URL}${url}`).send(data));
+  }
 };
