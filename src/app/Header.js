@@ -7,19 +7,35 @@ class Header extends PureComponent {
   
   render() {
     return (
-      <header className="hero">
-        <h1 className="title">iTravel</h1>
-        <nav className="breadcrumb" style={{ display:'flex', justifyContent:'flex-end' }} aria-label="breadcrumbs">
-          <li><NavLink to="/home">Home</NavLink></li>&nbsp;
-          <li><NavLink to="/search">Search</NavLink></li>&nbsp;
-          <li><NavLink to="/upload">Upload</NavLink></li>&nbsp;
-          <li><NavLink to="/MyExperiences">My Experiences</NavLink></li>&nbsp;
-          { this.props.user 
-            ? <li><NavLink to="/" onClick={this.props.signout}>Logout</NavLink></li>
-            : <li><NavLink to="/auth/signin">Login</NavLink></li>
-          }
+      <div className="header">
+        <nav className="navbar is-white">
+          <div className="navbar-brand">
+            <a className="navbar-item is-marginless" href="https://i-travel.herokuapp.com/">
+              <img src={require('../resources/logo.png')} alt="iTravel: an image based travel social media site"/>
+            </a>
+          </div>
+          <div className="navbar-menu">
+            <div className="navbar-start">
+              <a className="navbar-item">
+                <NavLink to="/home">iTravel</NavLink>
+              </a>
+              <a className="navbar-item">
+                <NavLink to="/search">Search</NavLink>
+              </a>
+              <a className="navbar-item">
+                <NavLink to="/upload">Upload</NavLink>
+              </a>
+              <a className="navbar-item">
+                <NavLink to="/MyExperiences">My Experiences</NavLink>
+              </a>
+              { this.props.user 
+                ? <a className="navbar-item"><NavLink to="/" onClick={this.props.signout}>Logout</NavLink></a>
+                : <a className="navbar-item"><NavLink to="/auth/signin">Login</NavLink></a>
+              }
+            </div>
+          </div>
         </nav>
-      </header>
+      </div>
     );
   }
 }

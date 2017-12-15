@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     const { checkedToken, loading, error } = this.props;
     return (
-      <Router>
+      <Router></Router>
         <div>
           { checkedToken &&
             <div className="App">
