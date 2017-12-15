@@ -18,6 +18,9 @@ export default {
   postImage(id, image) {
     return request.post(`${URL}/${id}/images`, image);
   },
+  postComment(id, comment) {
+    return request.post(`${URL}/${id}/comments`, comment);
+  },
   deleteImage(id, imageId) {
     return request.delete(`${URL}/${id}/images/${imageId}`);
   },
