@@ -20,7 +20,6 @@ export function experiences(state=[], { type, payload }) {
     case ADD_IMAGE_TO_EXP:
       return state.map(exp => exp._id === payload._id ? { ...exp, images: [...exp.images, payload.image] } : exp);
     case ADD_COMMENT_TO_EXP:
-      console.log(payload);
       return state.map(exp => exp._id === payload.exp ? { ...exp, comments: [...exp.comments, payload.comment] } : exp);
     case DELETE_EXP:
       return [...state.filter(exp => exp._id !== payload)]; 

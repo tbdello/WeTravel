@@ -50,7 +50,6 @@ export class Experience extends PureComponent {
       user: this.props.user.name,
       comment: elements.comment.value
     };
-    console.log('sending comment', post);
     this.props.addCommentToExp(this.props.id, post);
   };
 

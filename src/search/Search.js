@@ -7,11 +7,9 @@ import stock from '../home/favicon.png';
 export class Search extends PureComponent {
     
   handleSearch = event => {
-    console.log('searching');
     event.preventDefault();
     const { elements } = event.target;
     const query = `?location=${elements.location.value}&tag=${elements.tag.value}`;
-    console.log('query is', query);
     this.props.loadSearch(query);
   };
 

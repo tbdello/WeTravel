@@ -29,7 +29,6 @@ const wrap = cmd => cmd
 
 export const request = {
   get(url) {
-    console.log(url);
     return wrap(superagent.get(`${API_URL}${url}`));
   },
   post(url, data) {
