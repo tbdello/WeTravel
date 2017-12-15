@@ -1,15 +1,23 @@
 import React from 'react';
 
-import { shallow, mount } from 'enzyme';
-import toJSON from 'enzyme-to-json';
+import { shallow } from 'enzyme';
 
-import Experience from '../experience/Experience';
+import { Experience } from '../experience/Experience';
 
 describe('Experience', () => {
 
   it('shows the Experience component', () => {
-    const wrapper = shallow(<Experience />);
-    console.log(toJSON(wrapper));
-    expect(toJSON(wrapper)).toMatchSnapshot();
+
+
+    const wrapper = shallow(
+      <Experience 
+        user={{}} 
+        exp={[]} 
+        loadExp={() => { }} 
+        addImageToExp={() => { }} 
+        DeleteImage={() => { }}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 });

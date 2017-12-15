@@ -5,7 +5,7 @@ import { loadExpByUser } from '../experience/actions';
 import { UpdateProfile } from '../auth/actions';
 
 const defaultImg = 'http://www.beautythis.com/themes/comb/img/avatar/default-avatar-male_11.png';
-class Home extends PureComponent {
+export class Home extends PureComponent {
   
   state={ shouldDisplay: false }
 

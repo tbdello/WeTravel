@@ -4,7 +4,7 @@ import { loadExp, DeleteImage, addImageToExp } from './actions';
 import styled from 'styled-components';
 
 
-class Experience extends PureComponent {
+export class Experience extends PureComponent {
 
   state = { 
     index: 0, 

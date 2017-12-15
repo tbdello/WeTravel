@@ -1,15 +1,25 @@
 import React from 'react';
 
-import { shallow, mount } from 'enzyme';
-import toJSON from 'enzyme-to-json';
+import { shallow } from 'enzyme';
 
-import App from '../app/App';
+import { App } from '../app/App';
 
 describe('App', () => {
 
   it('shows the App component', () => {
-    const wrapper = shallow(<App />);
-    console.log(toJSON(wrapper));
-    expect(toJSON(wrapper)).toMatchSnapshot();
+    const checkedToken = 'test';
+    const loading = false;
+    const error = null;
+    const checkForToken = () => {};
+
+    const wrapper = shallow(
+      <App 
+        checkedToken={checkedToken}
+        loading={loading} 
+        error={error} 
+        checkForToken={checkForToken}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
   });
 });
