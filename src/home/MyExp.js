@@ -19,9 +19,9 @@ class Home extends PureComponent {
       <div>
         <ul>
           <h4>Here are Experiences you've shared</h4>
-          {expByUser.map(exp =>(
-            <StyledDiv key={exp._id}>
-              {exp.images[0] && <Link to={`experiences/${exp._id}`}><img src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>}
+          {expByUser.map((exp,i) =>(
+            <StyledDiv key={i}>
+              {exp.images && exp.images[0] && <Link to={`experiences/${exp._id}`}><img src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>}
               <div>
                 <Link to={`experiences/${exp._id}`}>{exp.title}</Link>
                 <button onClick={()=>this.handleDelete(exp._id)}>x</button> 
