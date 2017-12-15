@@ -23,21 +23,17 @@ class Home extends PureComponent {
         <section class="hero is-dark">
           <div class="hero-body">
             <div class="container">
-              <h1 class="title">
-                iTravel
-              </h1>
-              <h2 class="subtitle">
-                Slogan
-              </h2>
+              <h1 class="title">iTravel</h1>
+              <h2 class="subtitle">Slogan</h2>
             </div>
           </div>
         </section>
         <div className="columns">
           <div className="column is-one-fifth">
             <div>
-              <h2 className="title is-centered">{this.props.user.name}</h2>
+              <h2 className="title has-text-centered">{this.props.user.name}</h2>
               <div className="image">
-                <figure className="image is-128x128">
+                <figure className="image is-412x412">
                   <img
                     style={{ borderRadius: '50%', objectFit: 'cover' }}
                     alt="avatar"
@@ -45,20 +41,23 @@ class Home extends PureComponent {
                   />
                 </figure>
               </div>
-              <button
-                className="button"
-                onClick={() => {
-                  this.state.shouldDisplay
-                    ? this.setState({ shouldDisplay: false })
-                    : this.setState({ shouldDisplay: true });
-                }}
-              >
-                EditProfile
-              </button>
+              <div></div>
+              <div className="buttons is-centered">
+                <button
+                  className="button"
+                  onClick={() => {
+                    this.state.shouldDisplay
+                      ? this.setState({ shouldDisplay: false })
+                      : this.setState({ shouldDisplay: true });
+                  }}
+                >
+                  Edit Profile
+                </button>
+              </div>
             </div>
             <div>
               <form onSubmit={this.handleUserUpdate}>
-                <div className="control"> 
+                <div className="control">
                   <div class="file">
                     <label class="file-label">
                       <input
@@ -68,34 +67,26 @@ class Home extends PureComponent {
                       />
                       <span class="file-cta">
                         <span class="file-icon">
-                          <i class="fa fa-upload"></i>
+                          <i class="fa fa-upload" />
                         </span>
-                        <span class="file-label">
-                          Choose a file…
-                        </span>
+                        <span class="file-label">Choose a file…</span>
                       </span>
                     </label>
                   </div>
                 </div>
                 <div className="control">
-                  <input
-                    className="input"
-                    name="name"
-                    defaultValue={this.props.user.name}
-                  />
+                  <input className="input" name="name" placeHolder="Name" />
                 </div>
                 <div className="control">
-                  <input
-                    className="input"
-                    name="email"
-                    defaultValue={this.props.user.email}
-                  />
+                  <input className="input" name="email" placeHolder="E-mail" />
                 </div>
-                <button type="submit">Add</button>
+                <div className="buttons is-centered">
+                  <button type="submit">Update</button>
+                </div>
               </form>
             </div>
           </div>
-          <div className="column is-four-fifths">
+          <div className="column is-four-fifths is-light">
             <Feed />
           </div>
         </div>

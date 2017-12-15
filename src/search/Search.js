@@ -20,12 +20,8 @@ class Search extends PureComponent {
         <section class="hero is-dark">
           <div class="hero-body">
             <div class="container">
-              <h1 class="title">
-                Hey {this.props.user.name}
-              </h1>
-              <h2 class="subtitle">
-                Please enter your Search
-              </h2>
+              <h1 class="title">Hey {this.props.user.name}</h1>
+              <h2 class="subtitle">Please enter your Search</h2>
             </div>
           </div>
         </section>

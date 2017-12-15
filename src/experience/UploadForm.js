@@ -4,10 +4,9 @@ import { addExperience } from './actions';
 import { Redirect } from 'react-router-dom';
 
 export class UploadForm extends PureComponent {
-  
-  state={
+  state = {
     redirect: false
-  }
+  };
 
   handleExpPost = event => {
     event.preventDefault();
@@ -21,7 +20,7 @@ export class UploadForm extends PureComponent {
     };
     this.props.addExperience(exp);
     this.setState({ redirect: true });
-  }
+  };
 
   render() {
     return (
@@ -30,39 +29,63 @@ export class UploadForm extends PureComponent {
           <form onSubmit={this.handleExpPost}>
             <div className="field">
               <div className="control">
-                <input name="name" className="input" type="text" placeholder="Name"/>
+                <input
+                  name="name"
+                  className="input"
+                  type="text"
+                  placeholder="Name"
+                />
               </div>
             </div>
             <div className="field">
               <div className="control">
-                <input name="title" className="input" type="text" placeholder="Title"/>
+                <input
+                  name="title"
+                  className="input"
+                  type="text"
+                  placeholder="Title"
+                />
               </div>
             </div>
             <div className="field">
               <div className="control">
-                <input name="description" className="input" type="text" placeholder="Description"/>
+                <input
+                  name="description"
+                  className="input"
+                  type="text"
+                  placeholder="Description"
+                />
               </div>
             </div>
             <div className="field">
               <div className="control">
-                <input name="location" className="input" type="text" placeholder="Location"/>
+                <input
+                  name="location"
+                  className="input"
+                  type="text"
+                  placeholder="Location"
+                />
               </div>
             </div>
             <div className="field">
               <div className="control">
-                <input name="tags" className="input" type="text" placeholder="Tags"/>
+                <input
+                  name="tags"
+                  className="input"
+                  type="text"
+                  placeholder="Tags"
+                />
               </div>
             </div>
             <button type="submit">Add</button>
-          </form> 
-          { this.state.redirect && (<Redirect to="/MyExperiences"/>) }
+          </form>
+          {this.state.redirect && <Redirect to="/MyExperiences/${this.props}`" />}
         </div>
       </div>
     );
   }
 }
 
-export default connect( 
-  state => ({ user: state.auth.user }),
-  { addExperience }
-)(UploadForm);
+export default connect(state => ({ user: state.auth.user }), { addExperience })(
+  UploadForm
+);
