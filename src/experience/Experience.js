@@ -54,7 +54,11 @@ class Experience extends PureComponent {
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
       <div> 
-        <button className="button" onClick={()=> this.setState({ shouldDisplay: true })}> AddImage </button>
+        <button className="button" onClick={()=>{
+          this.state.shouldDisplay
+            ? this.setState({ shouldDisplay: false })
+            : this.setState({ shouldDisplay: true });
+        }}> AddImage </button>
         <StyledDiv>
           {(this.searchedExp().images)
             ?(<div>
