@@ -3,12 +3,12 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJSON from 'enzyme-to-json';
 
-import App from '../app/App';
+import Auth from '../auth/Auth';
 
-describe('App', () => {
+describe('Auth', () => {
 
-  it('shows the App component', () => {
-    const wrapper = shallow(<App />);
+  it('shows the Auth component', () => {
+    const wrapper = shallow(<Auth />);
     console.log(toJSON(wrapper));
     expect(toJSON(wrapper)).toMatchSnapshot();
   });

@@ -3,12 +3,12 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJSON from 'enzyme-to-json';
 
-import App from '../app/App';
+import Experience from '../experience/Experience';
 
-describe('App', () => {
+describe('Experience', () => {
 
-  it('shows the App component', () => {
-    const wrapper = shallow(<App />);
+  it('shows the Experience component', () => {
+    const wrapper = shallow(<Experience />);
     console.log(toJSON(wrapper));
     expect(toJSON(wrapper)).toMatchSnapshot();
   });
