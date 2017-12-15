@@ -18,6 +18,9 @@ export default {
   postImage(id, image) {
     return request.post(`${URL}/${id}/images`, image);
   },
+  deleteImage(id, imageId) {
+    return request.delete(`${URL}/${id}/images/${imageId}`);
+  },
   delete(id) {
     return request.delete(`${URL}/${id}`);
   }

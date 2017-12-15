@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { loadExp } from './actions';
-import { addImageToExp } from './actions';
+import { loadExp, DeleteImage, addImageToExp } from './actions';
 import styled from 'styled-components';
 
 
@@ -38,6 +37,11 @@ class Experience extends PureComponent {
     this.setState(newState);
   }
 
+  handleDelete = imageId => {
+    this.props.DeleteImage(this.props.id, imageId);
+
+  }
+
   handleImgPost = event =>{
     event.preventDefault();
     const form = event.target;
@@ -64,7 +68,7 @@ class Experience extends PureComponent {
             ?(<div>
               {this.searchedExp().images.map((img, i, array) => (
                 <ImgDiv key={img._id} shouldDisplay ={this.state.index === i}>
-                  {/* <DeleteDiv onClick={() => this.handleDelete(img._id)}>X</DeleteDiv> */}
+                  <DeleteDiv onClick={() => this.handleDelete(img._id)}>X</DeleteDiv>
                   {i !== 0 && <StyledButton className="button" onClick ={()=> this.handleClick(-1)}> ◀</StyledButton>}
                   <StyledImgDiv>
                     <img style={{ width:'100%' }} src={img.imageURI} alt={img.caption}/>
@@ -135,5 +139,5 @@ border: 1px solid black;
 
 export default connect(
   state => ({ user: state.auth.user, exp: state.experiences }),
-  { loadExp, addImageToExp }
+  { loadExp, addImageToExp, DeleteImage }
 )(Experience); 
