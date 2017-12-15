@@ -9,46 +9,82 @@ export class Home extends PureComponent {
   
   state={ shouldDisplay: false }
 
-
-  handleUserUpdate = event =>{
+  handleUserUpdate = event => {
     event.preventDefault();
     const form = event.target;
     const profile = new FormData(form);
     form.reset();
     this.props.UpdateProfile(profile);
-  }
+  };
 
   render() {
     return (
       <div>
-        <div>
-          <img style={{ borderRadius: '50%', objectFit:'cover', width:'100px', height:'100px' }} alt='avatar' src={this.props.user.imageURI|| defaultImg}/>
-          <h1>Hello {this.props.user.name}</h1>
-          <button className="button" onClick={()=>{
-            this.state.shouldDisplay
-              ? this.setState({ shouldDisplay: false })
-              : this.setState({ shouldDisplay: true });
-          }}> EditProfile </button>
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">iTravel</h1>
+              <h2 className="subtitle">Slogan</h2>
+            </div>
+          </div>
+        </section>
+        <div className="columns">
+          <div className="column is-one-fifth">
+            <div>
+              <h2 className="title has-text-centered">{this.props.user.name}</h2>
+              <div style = {{ display: 'flex', justifyContent: 'center' }}>
+                <img
+                  style={{ borderRadius: '50%', width:'250px', height:'250px', objectFit: 'cover' }}
+                  alt="avatar"
+                  src={this.props.user.imageURI || defaultImg}
+                />
+              </div>
+              <div className="buttons is-centered">
+                <button
+                  className="button"
+                  onClick={() => {
+                    this.state.shouldDisplay
+                      ? this.setState({ shouldDisplay: false })
+                      : this.setState({ shouldDisplay: true });
+                  }}
+                >
+                  Edit Profile
+                </button>
+              </div>
+            </div>
+            <div>
+              {this.state.shouldDisplay &&
+                <form onSubmit={this.handleUserUpdate}>
+                  <div className="control">
+                    <div className="file">
+                      <input
+                        type="file"
+                        name="image"
+                        accept=".jpg, .jpeg, .png, .svg"
+                      />
+                    </div>
+                  </div>
+                  <div className="control">
+                    <input className="input" name="name" defaultValue={this.props.user.name} />
+                  </div>
+                  <div className="control">
+                    <input className="input" name="email" defaultValue={this.props.user.name} />
+                  </div>
+                  <div className="buttons is-centered">
+                    <button type="submit">Update</button>
+                  </div>
+                </form>
+              }
+            </div>
+          </div>
+          <div className="column is-four-fifths is-light">
+            <Feed />
+          </div>
         </div>
-        <div>
-          { this.state.shouldDisplay &&
-          <form onSubmit={this.handleUserUpdate}> 
-            <input
-              type="file"
-              name="image"
-              accept=".jpg, .jpeg, .png, .svg" 
-            />
-            <input name="name" defaultValue={this.props.user.name}/>
-            <input name="email" defaultValue={this.props.user.email}/>
-            <button type="submit">Add</button>
-          </form>
-          } 
-        </div>
-        <Feed/>
       </div>
     );
   }
-} 
+}
 export default connect(
   state => ({ user: state.auth.user, exp: state.experiences }),
   { loadExpByUser, UpdateProfile }

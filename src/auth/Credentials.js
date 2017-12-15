@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 export default class Credentials extends React.PureComponent{ 
   handleSubmit = (e) => {
@@ -14,22 +13,30 @@ export default class Credentials extends React.PureComponent{
 
   render(){
     return(
-      <StyledForm onSubmit ={this.handleSubmit}>
-        { this.props.allowName && <label>name: <input name="name"/></label>}
-        <label>email: <input name="email"/></label>
-        <label>password: <input type="password" name="password"/></label>
-        <button>{this.props.action}</button>
-      </StyledForm>
+      <div className="tile">
+        <form onSubmit ={this.handleSubmit}>
+          { this.props.allowName && 
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input name="name" className="input" type="text"/>
+              </div>
+            </div>}
+          <div className="field">
+            <label className="label">Email</label>
+            <div className="control">
+              <input name="email" className="input" type="text"/>
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Password</label>
+            <div className="control">
+              <input type="password" name="password" className="input"/>
+            </div>
+          </div>
+          <button>{this.props.action}</button>
+        </form>
+      </div>
     );
   }
 }
-
-const StyledForm = styled.form`
-text-align: center;
-label {
-  display: block;
-}
-label, button {
-  padding: 5px;
-}
-`;

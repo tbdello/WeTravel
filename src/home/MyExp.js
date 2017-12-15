@@ -2,7 +2,6 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { loadExpByUser, deleteExp } from '../experience/actions';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import stock from './favicon.png';
 
 class Home extends PureComponent {

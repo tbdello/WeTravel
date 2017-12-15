@@ -2,45 +2,72 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { loadSearch } from './actions';
+import stock from '../home/favicon.png';
 
 export class Search extends PureComponent {
     
   handleSearch = event => {
     console.log('searching');
-    event.preventDefault();  
+    event.preventDefault();
     const { elements } = event.target;
     const query = `?location=${elements.location.value}&tag=${elements.tag.value}`;
+    console.log('query is', query);
     this.props.loadSearch(query);
-  }
-
+  };
 
   render() {
-    
     return (
       <div>
-        <h1>Hey {this.props.user.name}<br/> Please enter your Search</h1>
-        <form onSubmit={this.handleSearch}>
-          <input name="location" placeholder="location"/>
-          <input name="tag" placeholder="tag"/>
-          <button type="submit">Search</button>
-        </form> 
-
-        {(this.props.search.length !== 0)
-          ? <div>
-            <ul>
-              {this.props.search.map(exp => (
-                <div key={exp._id}>
-                  <div>
-                    <Link to={`experiences/${exp._id}`}> <h5>{exp.title}
-                    </h5></Link>
-                  </div>
-                  {exp.images[0] && <img src={exp.images[0].imageURI} alt={exp.images[0].caption} />}
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">Hey {this.props.user.name}</h1>
+              <h2 className="subtitle">Please enter your Search</h2>
+            </div>
+          </div>
+        </section>
+        <div className="tile">
+          <form onSubmit={this.handleSearch}>
+            <div className="field">
+              <label className="label">Location</label>
+              <div className="control">
+                <input name="location" placeholder="location" />
+              </div>
+            </div>
+            <div className="field">
+              <label className="label">Tag</label>
+              <div className="control">
+                <input name="tag" placeholder="tag" />
+              </div>
+            </div>
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        {this.props.search.length !== 0 ? (
+          <div>
+            <ul style={{ display: 'flex' }}>
+              {this.props.search.map((exp, i) => (
+                <div key={i}>
+                  {exp.images && exp.images[0] && 
+              <div>
+                <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '200px',height: '120px', margin: '10px' }} src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>
+              </div>
+                  }
+                  {exp.images && !exp.images[0] &&
+              <div>
+                <div>
+                  <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '150px',height: '120px', margin: '10px' }} src={stock} alt='none'/></Link>
+                </div>
+                <p style={{ textAlign:'center' }}>{exp.location}</p>
+              </div>
+                  }
                 </div>
               ))}
             </ul>
           </div>
-          :<div> No results </div>
-        }        
+        ) : (
+          <div> No results </div>
+        )}
       </div>
     );
   }
@@ -49,4 +76,4 @@ export class Search extends PureComponent {
 export default connect(
   state => ({ user: state.auth.user, search: state.search }),
   { loadSearch }
-)(Search); 
+)(Search);

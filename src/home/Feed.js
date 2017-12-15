@@ -15,7 +15,7 @@ class Feed extends PureComponent {
     if(!this.props.feed) return <div>No Experiences have been posted yet</div>;
     
     return (
-      <div style={{ display:'flex', justifyContent: 'center' }}>
+      <div style={{ display:'flex', marginLeft:'18%' }}>
         <FeedDiv>
           {this.props.feed.filter(exp => exp.images.length > 0).map(exp =>(
             <Link key={exp._id} to={`experiences/${exp._id}`}>
