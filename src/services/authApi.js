@@ -12,5 +12,8 @@ export default {
   },
   getUser() {
     return request.get('/auth/getuser');
+  },
+  updateUser(profile) {
+    return request.put('/auth/me', profile);
   }
 };

@@ -9,15 +9,28 @@ class Experience extends PureComponent {
 
   state = { 
     index: 0, 
-    gallery:[]
   }
 
   componentDidMount() {
     this.props.loadExp(this.props.id);
+    this.startListener();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleArrows);
+  }
+
+  startListener = ()=>{
+    document.addEventListener('keydown', this.handleArrows); 
+  }
+
+  handleArrows = ({ key }) => {
+    console.log(key);
+    if(key ==='ArrowLeft' && this.state.index !== 0) this.handleClick(-1);
+    if(key ==='ArrowRight' && this.state.index !== this.searchedExp().images.length -1) this.handleClick(1);
   }
 
   handleClick = (value) => {
-    console.log('clicked');
     const newState = {
       ...this.state,
       index: this.state.index + value
@@ -29,6 +42,7 @@ class Experience extends PureComponent {
     event.preventDefault();
     const form = event.target;
     const image = new FormData(form);
+    form.reset();
     this.props.addImageToExp(this.props.id, image);
   }
 
@@ -36,37 +50,43 @@ class Experience extends PureComponent {
     return this.props.exp.find(exp => exp._id === this.props.id);
   }
     
-  
-  render() {
-    
+  render() { 
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
       <div>
         <h3>You are viewing {this.searchedExp().user.name}'s album</h3>
         <h3>Title is: {this.searchedExp().title}</h3>
         <h5>Location:  {this.searchedExp().location} </h5> 
+        <button className="button" onClick={()=>{
+          this.state.shouldDisplay
+            ? this.setState({ shouldDisplay: false })
+            : this.setState({ shouldDisplay: true });
+        }}> AddImage </button>
         <StyledDiv>
           {(this.searchedExp().images)
             ?(<div>
-              {this.searchedExp().images.map((img, i) => (
+              {this.searchedExp().images.map((img, i, array) => (
                 <ImgDiv key={img._id} shouldDisplay ={this.state.index === i}>
                   {/* <DeleteDiv onClick={() => this.handleDelete(img._id)}>X</DeleteDiv> */}
-                  <img style={{ width:'100%' }} src={img.imageURI} alt={img.caption}/>
-                  <span> {img.caption} </span>
-                  { i !== this.state.gallery.length -1 && <span onClick ={()=> this.handleClick(1)}> next </span>}
-                  {i !== 0 && <span onClick ={()=> this.handleClick(-1)}> previous</span>}
+                  {i !== 0 && <StyledButton className="button" onClick ={()=> this.handleClick(-1)}> ◀</StyledButton>}
+                  <StyledImgDiv>
+                    <img style={{ width:'100%' }} src={img.imageURI} alt={img.caption}/>
+                    <p style={{ marginLeft: '40%' }}> {img.caption} </p>
+                  </StyledImgDiv>
+                  { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
                 </ImgDiv>
               ))}
             </div>)
             :<div> No images uploaded yet </div>
           }
+          <h5>Location:  {this.searchedExp().location} </h5>
+          <h5> {this.searchedExp().description} </h5>
         </StyledDiv>
         <div>
-          Tags:
-          {this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
+          Tags:{this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
         </div>
         <div>
-          <h4>Time to add some images!</h4>
+          { this.state.shouldDisplay &&
           <form onSubmit={this.handleImgPost}> 
             <input
               type="file"
@@ -76,25 +96,42 @@ class Experience extends PureComponent {
             />
             <input name="caption" placeholder="caption"/>
             <button type="submit">Add</button>
-          </form> 
+          </form>
+          } 
         </div>
       </div>
     );
   }
 }
 
+const StyledButton = styled.div`
+margin-top: 30%;
+`;
+
+const StyledImgDiv = styled.div`
+background-color: white;
+display: flex;
+flex-direction: column;
+justify-content: center;
+
+`;
 const StyledDiv = styled.div`
+width: 70%;
 display: 'flex';
+justify-content: flex-center;
+
 `;
 
 const ImgDiv = styled.div`
 display:${props => props.shouldDisplay ? 'flex' : 'none'};
-flex-direction: column;
+flex-direction: row;
+justify-content: flex-start;
+overflow: hidden;
 margin: 0 10%;
 `;
 
 const DeleteDiv = styled.div`
-margin-left: 90%;
+
 text-align: center;
 border: 1px solid black;
 `;
