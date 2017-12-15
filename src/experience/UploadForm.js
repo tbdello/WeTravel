@@ -28,7 +28,13 @@ export class UploadForm extends PureComponent {
       <div>
         <div>
           <form onSubmit={this.handleExpPost}>
-            <input name="title" placeholder="title"/>
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
+                <input class="input" type="text" placeholder="Name"/>
+              </div>
+            </div>
+            <input className="input" name="title" placeholder="title"/>
             <input name="description" placeholder="description"/>
             <input name="location" placeholder="location"/>
             <input name="tags" placeholder="tags"/>

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Poiret+One|Roboto");
 /*! bulma.io v0.6.1 | MIT License | github.com/jgthms/bulma */
 @keyframes spinAround {
   from {
@@ -102,7 +103,7 @@ button,
 input,
 select,
 textarea {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif; }
+  font-family: "Poiret One"; }
 
 code,
 pre {
