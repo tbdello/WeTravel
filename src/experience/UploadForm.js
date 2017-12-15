@@ -24,7 +24,19 @@ export class UploadForm extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className="container">
+        <section className="hero is-dark">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
+                New Experience
+              </h1>
+              <h2 className="subtitle">
+                Enter Details
+              </h2>
+            </div>
+          </div>
+        </section>
         <div className="tile">
           <form onSubmit={this.handleExpPost}>
             <div className="field">
@@ -79,7 +91,7 @@ export class UploadForm extends PureComponent {
             </div>
             <button type="submit">Add</button>
           </form>
-          {this.state.redirect && <Redirect to="/MyExperiences/${this.props}`" />}
+          {this.state.redirect && <Redirect to="/MyExperiences/" />}
         </div>
       </div>
     );
