@@ -42,7 +42,8 @@ class Experience extends PureComponent {
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
       <div>
-        <h3>title is: {this.searchedExp().title}</h3>
+        <h3>You are viewing {this.searchedExp().user.name}'s album</h3>
+        <h3>Title is: {this.searchedExp().title}</h3>
         <h5>Location:  {this.searchedExp().location} </h5> 
         <StyledDiv>
           {(this.searchedExp().images)
