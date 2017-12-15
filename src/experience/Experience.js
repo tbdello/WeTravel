@@ -68,37 +68,7 @@ export class Experience extends PureComponent {
 
     return (
       <div>
-        <section className="hero is-medium is-dark is-bold">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title">{this.searchedExp().title}</h1>
-              <h2 className="subtitle">{this.searchedExp().location}</h2>
-              <div className="image">
-                <figure className=" is-media-left">
-                  <img
-                    style={{ borderRadius: '50%', objectFit: 'cover' }}
-                    alt="avatar"
-                    src={this.searchedExp().user.imageURI}
-                  />
-                </figure>
-                <figcaption>{this.searchedExp().user.name}</figcaption>
-              </div>
-              {this.searchedExp().user.email === this.props.user.email && (
-                <button
-                  className="button"
-                  onClick={() => {
-                    this.state.shouldDisplay
-                      ? this.setState({ shouldDisplay: false })
-                      : this.setState({ shouldDisplay: true });
-                  }}
-                >
-                  {' '}
-            AddImage{' '}
-                </button>
-              )}
-            </div>
-          </div>
-        </section>
+        
   }
     
   render() { 
