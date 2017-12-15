@@ -21,28 +21,26 @@ class Home extends PureComponent {
   render() {
     return (
       <div>
-        <div>
-          <img style={{ borderRadius: '50%', objectFit:'cover', width:'100px', height:'100px' }} alt='avatar' src={this.props.user.imageURI|| defaultImg}/>
-          <h1>Hey {this.props.user.name}</h1>
-          <button className="button" onClick={()=>{
-            this.state.shouldDisplay
-              ? this.setState({ shouldDisplay: false })
-              : this.setState({ shouldDisplay: true });
-          }}> EditProfile </button>
-        </div>
-        <div>
-          { this.state.shouldDisplay &&
-          <form onSubmit={this.handleUserUpdate}> 
-            <input
-              type="file"
-              name="image"
-              accept=".jpg, .jpeg, .png, .svg" 
-            />
-            <input name="name" defaultValue={this.props.user.name}/>
-            <input name="email" defaultValue={this.props.user.email}/>
-            <button type="submit">Add</button>
-          </form>
-          } 
+        <div className="card">
+          <header className="card-header">
+            <p class="card-header-title">
+              {this.props.user.name}
+            </p>
+          </header>
+          <div className="card-image">
+            <figure className="image is-128x128">
+              <img style={{ borderRadius: '50%', objectFit:'cover' }} alt='avatar' src={this.props.user.imageURI|| defaultImg}/>
+            </figure>
+          </div>
+          <footer className="card-footer">
+            <button className="button" onClick={()=>{
+              this.state.shouldDisplay
+                ? this.setState({ shouldDisplay: false })
+                : this.setState({ shouldDisplay: true });
+            }}>
+              Edit Profile
+            </button>
+          </footer>
         </div>
         <Feed/>
       </div>

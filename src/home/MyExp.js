@@ -21,7 +21,12 @@ class Home extends PureComponent {
           <h4>Here are Experiences you've shared</h4>
           {expByUser.map((exp,i) =>(
             <StyledDiv key={i}>
-              {exp.images && exp.images[0] && <Link to={`experiences/${exp._id}`}><img src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>}
+              {exp.images && exp.images[0] &&
+              <Link to={`experiences/${exp._id}`}>
+                <figure className="image is-96x96">
+                  <img src={exp.images[0].imageURI} alt={exp.images[0].caption}/>
+                </figure>
+              </Link>}
               <div>
                 <Link to={`experiences/${exp._id}`}>{exp.title}</Link>
                 <button onClick={()=>this.handleDelete(exp._id)}>x</button> 

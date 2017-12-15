@@ -10,8 +10,8 @@ class Header extends PureComponent {
       <div className="header">
         <nav className="navbar is-white">
           <div className="navbar-brand">
-            <a className="navbar-item is-marginless" href="https://i-travel.herokuapp.com/">
-              <img src={require('../resources/logo.png')} alt="iTravel: an image based travel social media site"/>
+            <a className="navbar-item" href="https://i-travel.herokuapp.com/">
+              <img src={require('../resources/logo.png')} alt="iTravel logo"/>
             </a>
           </div>
           <div className="navbar-menu">
