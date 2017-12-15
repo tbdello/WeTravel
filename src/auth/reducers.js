@@ -9,6 +9,8 @@ export function user(state = null, { type, payload }) {
       return payload;
     case ACTIONS.LOAD_USER_EXP:
       return Object.assign(state, { experiences: payload });
+    case ACTIONS.UPDATE_PROFILE:
+      return payload;
     case ACTIONS.LOGOUT:
     case ACTIONS.AUTH_FAILED:
       return null;
