@@ -58,34 +58,12 @@ class Experience extends PureComponent {
     if(!this.searchedExp()) return <div>no such experience has been posted yet</div>;
     return (
       <div> 
-        <button className="button" onClick={()=>{
+        { this.searchedExp().user.email === this.props.user.email && <button className="button" onClick={()=>{
           this.state.shouldDisplay
             ? this.setState({ shouldDisplay: false })
             : this.setState({ shouldDisplay: true });
         }}> AddImage </button>
-        <StyledDiv>
-          {(this.searchedExp().images)
-            ?(<div>
-              {this.searchedExp().images.map((img, i, array) => (
-                <ImgDiv key={img._id} shouldDisplay ={this.state.index === i}>
-                  <DeleteDiv onClick={() => this.handleDelete(img._id)}>X</DeleteDiv>
-                  {i !== 0 && <StyledButton className="button" onClick ={()=> this.handleClick(-1)}> ◀</StyledButton>}
-                  <StyledImgDiv>
-                    <img style={{ width:'100%' }} src={img.imageURI} alt={img.caption}/>
-                    <p style={{ marginLeft: '40%' }}> {img.caption} </p>
-                  </StyledImgDiv>
-                  { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
-                </ImgDiv>
-              ))}
-            </div>)
-            :<div> No images uploaded yet </div>
-          }
-          <h5>Location:  {this.searchedExp().location} </h5>
-          <h5> {this.searchedExp().description} </h5>
-        </StyledDiv>
-        <div>
-          Tags:{this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
-        </div>
+        }
         <div>
           { this.state.shouldDisplay &&
           <form onSubmit={this.handleImgPost}> 
@@ -99,6 +77,32 @@ class Experience extends PureComponent {
             <button type="submit">Add</button>
           </form>
           } 
+        </div>
+        <StyledDiv>
+          {(this.searchedExp().images)
+            ?(<div>
+              {this.searchedExp().images.map((img, i, array) => (
+                <ImgDiv key={img._id} shouldDisplay ={this.state.index === i}>
+                  {i !== 0 && <StyledButton className="button" onClick ={()=> this.handleClick(-1)}> ◀</StyledButton>}
+                  
+                  <StyledImgDiv>
+                    <img style={{ width:'100%' }} src={img.imageURI} alt={img.caption}/>
+                    <p style={{ marginLeft: '40%' }}> {img.caption} </p>
+                  </StyledImgDiv>
+                  <div>
+                    <DeleteButton className ="button" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
+                    { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
+                  </div>
+                </ImgDiv>
+              ))}
+            </div>)
+            :<div> No images uploaded yet </div>
+          }
+          <h5>Location:  {this.searchedExp().location} </h5>
+          <h5> {this.searchedExp().description} </h5>
+        </StyledDiv>
+        <div>
+          Tags:{this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
         </div>
       </div>
     );
@@ -131,10 +135,8 @@ overflow: hidden;
 margin: 0 10%;
 `;
 
-const DeleteDiv = styled.div`
-
+const DeleteButton = styled.button`
 text-align: center;
-border: 1px solid black;
 `;
 
 export default connect(
