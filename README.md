@@ -7,19 +7,14 @@ MongoDB, latest stable version of Node.js
 
 ## Installation
 
-1. Install [Node.js](https://nodejs.org/en/).
 
-    ```
-    brew install node
-    ```
-
-2. Clone repository and change directory.
+1. Clone repository and change directory.
 
     ```
     git clone https://github.com/tbdello/i-travel 
     ```
 
-3. Install dependencies.
+1. Install dependencies.
 
     ```
     npm install
