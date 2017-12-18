@@ -2,28 +2,75 @@
 
 exports[`Search shows the Search component 1`] = `
 <div>
-  <h1>
-    Hey 
-    <br />
-     Please enter your Search
-  </h1>
-  <form
-    onSubmit={[Function]}
+  <section
+    className="hero is-dark"
   >
-    <input
-      name="location"
-      placeholder="location"
-    />
-    <input
-      name="tag"
-      placeholder="tag"
-    />
-    <button
-      type="submit"
+    <div
+      className="hero-body"
     >
-      Search
-    </button>
-  </form>
+      <div
+        className="container"
+      >
+        <h1
+          className="title"
+        >
+          Hey 
+        </h1>
+        <h2
+          className="subtitle"
+        >
+          Please enter your Search
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div
+    className="tile"
+  >
+    <form
+      onSubmit={[Function]}
+    >
+      <div
+        className="field"
+      >
+        <label
+          className="label"
+        >
+          Location
+        </label>
+        <div
+          className="control"
+        >
+          <input
+            name="location"
+            placeholder="location"
+          />
+        </div>
+      </div>
+      <div
+        className="field"
+      >
+        <label
+          className="label"
+        >
+          Tag
+        </label>
+        <div
+          className="control"
+        >
+          <input
+            name="tag"
+            placeholder="tag"
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+      >
+        Search
+      </button>
+    </form>
+  </div>
   <div>
      No results 
   </div>

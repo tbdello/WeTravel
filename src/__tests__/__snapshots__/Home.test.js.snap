@@ -2,30 +2,77 @@
 
 exports[`Home shows the Home component 1`] = `
 <div>
-  <div>
-    <img
-      alt="avatar"
-      src="http://www.beautythis.com/themes/comb/img/avatar/default-avatar-male_11.png"
-      style={
-        Object {
-          "borderRadius": "50%",
-          "height": "100px",
-          "objectFit": "cover",
-          "width": "100px",
-        }
-      }
-    />
-    <h1>
-      Hello 
-    </h1>
-    <button
-      className="button"
-      onClick={[Function]}
+  <section
+    className="hero is-dark"
+  >
+    <div
+      className="hero-body"
     >
-       EditProfile 
-    </button>
+      <div
+        className="container"
+      >
+        <h1
+          className="title"
+        >
+          iTravel
+        </h1>
+        <h2
+          className="subtitle"
+        >
+          Slogan
+        </h2>
+      </div>
+    </div>
+  </section>
+  <div
+    className="columns"
+  >
+    <div
+      className="column is-one-fifth"
+    >
+      <div>
+        <h2
+          className="title has-text-centered"
+        />
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "justifyContent": "center",
+            }
+          }
+        >
+          <img
+            alt="avatar"
+            src="http://www.beautythis.com/themes/comb/img/avatar/default-avatar-male_11.png"
+            style={
+              Object {
+                "borderRadius": "50%",
+                "height": "250px",
+                "objectFit": "cover",
+                "width": "250px",
+              }
+            }
+          />
+        </div>
+        <div
+          className="buttons is-centered"
+        >
+          <button
+            className="button"
+            onClick={[Function]}
+          >
+            Edit Profile
+          </button>
+        </div>
+      </div>
+      <div />
+    </div>
+    <div
+      className="column is-four-fifths is-light"
+    >
+      <Connect(Feed) />
+    </div>
   </div>
-  <div />
-  <Connect(Feed) />
 </div>
 `;
