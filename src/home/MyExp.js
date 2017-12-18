@@ -21,12 +21,14 @@ class Home extends PureComponent {
         <ul style={{ display: 'flex' }}>
           {expByUser.map((exp,i) =>(
             <div key={i}>
+            
               {exp.images && exp.images[0] && 
               <div>
                 <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '200px',height: '120px', margin: '10px' }} src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>
                 <button className=" delete" onClick={()=>this.handleDelete(exp._id)}>x</button>
               </div>
               }
+
               {exp.images && !exp.images[0] &&
               <div>
                 <div>

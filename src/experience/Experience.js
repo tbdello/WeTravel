@@ -82,14 +82,16 @@ export class Experience extends PureComponent {
             </div>
           </div>
         </section>
-        { this.searchedExp().user.email === this.props.user.email && <button className="button" onClick={()=>{
-          this.state.shouldDisplay
-            ? this.setState({ shouldDisplay: false })
-            : this.setState({ shouldDisplay: true });
-        }}> AddImage </button>
+        { this.searchedExp().user.email === this.props.user.email
+         && <button className="button" onClick={()=>{
+           this.state.shouldDisplay
+             ? this.setState({ shouldDisplay: false })
+             : this.setState({ shouldDisplay: true });
+         }}> AddImage </button>
         }
         <div>
-          { this.state.shouldDisplay &&
+          { this.state.shouldDisplay
+           &&
           <form onSubmit={this.handleImgPost}> 
             <input
               type="file"
@@ -114,10 +116,12 @@ export class Experience extends PureComponent {
                     <p style={{ marginLeft: '40%' }}> {img.caption} </p>
                   </StyledImgDiv>
                   <div>
-                    { this.searchedExp().user.email === this.props.user.email &&<DeleteButton className ="delete" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
+                    { this.searchedExp().user.email === this.props.user.email
+                     &&<DeleteButton className ="delete" onClick={() => this.handleDelete(img._id)}>X</DeleteButton>
                     }
                   </div>
-                  { i !== array.length -1 && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
+                  { i !== array.length -1
+                     && <StyledButton className="button" onClick ={()=> this.handleClick(1)}> ▶ </StyledButton>}
                 </ImgDiv>
               ))}
             </div>)
@@ -126,15 +130,17 @@ export class Experience extends PureComponent {
           <h5> {this.searchedExp().description} </h5>
         </StyledDiv>
         <div>
-          Tags:{this.searchedExp().tags && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
+          Tags:{this.searchedExp().tags
+             && this.searchedExp().tags.map((tag, i) =>(<span key={i}>  {tag} </span>))}
           <h5> Have questions? shoot {this.searchedExp().user.name} an <a href={`mailto:${this.searchedExp().user.email}?Subject=Friend%20From%20iTravel`} target="_top">email</a></h5>
         </div>
 
         <div style={{ border:'1px solid grey' }}>
-          {this.searchedExp().comments && this.searchedExp().comments.map((com, i) => (
-            <div key={i}>
-              <p><span style={{ fontWeight:'bold' }}>{com.user} </span>{com.comment}</p>
-            </div>))}
+          {this.searchedExp().comments
+           && this.searchedExp().comments.map((com, i) => (
+             <div key={i}>
+               <p><span style={{ fontWeight:'bold' }}>{com.user} </span>{com.comment}</p>
+             </div>))}
           <form onSubmit={this.handleCommentPost}> 
             <input name="comment" placeholder="Enter Your Comment Here"/>
             <button type="submit">Post</button>
