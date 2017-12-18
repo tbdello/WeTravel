@@ -1,4 +1,6 @@
 # I-Travel
+
+// initial commit for grading/feedback
 An app that lets you explore the wide world of travel with pictures and stories from people who have traveled there. 
 
 ## Requirements
