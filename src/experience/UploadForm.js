@@ -3,6 +3,15 @@ import { connect } from 'react-redux';
 import { addExperience } from './actions';
 import { Redirect } from 'react-router-dom';
 
+// pull out repeated things like this
+const FieldControl = ({ children }) => (
+  <div className="field">
+    <div className="control">
+      {this.children}
+    </div>
+  </div>
+);
+
 export class UploadForm extends PureComponent {
   state = {
     redirect: false
@@ -18,11 +27,18 @@ export class UploadForm extends PureComponent {
       user: this.props.user._id,
       tags: elements.tags.value.split(' ')
     };
-    this.props.addExperience(exp);
-    this.setState({ redirect: true });
+    // you need to wait and see if action was successful
+    this.props.addExperience(exp).then(() => {
+      // this is hokey, for programmatic change, 
+      // use history.push (from router)
+      this.setState({ redirect: true });
+    });
   };
 
   render() {
+    // this shouldn't be buried at the bottom of the component
+    if(this.state.redirect) return <Redirect to="/MyExperiences"/>;
+
     return (
       <div>
         <section className="hero is-dark">
@@ -40,49 +56,40 @@ export class UploadForm extends PureComponent {
         <div className="container">
           <div className="tile">
             <form onSubmit={this.handleExpPost}>
-              <div className="field">
-                <div className="control">
-                  <input
-                    name="title"
-                    className="input"
-                    type="text"
-                    placeholder="Title"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="control">
-                  <input
-                    name="description"
-                    className="input"
-                    type="text"
-                    placeholder="Description"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="control">
-                  <input
-                    name="location"
-                    className="input"
-                    type="text"
-                    placeholder="Location"
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <div className="control">
-                  <input
-                    name="tags"
-                    className="input"
-                    type="text"
-                    placeholder="Tags"
-                  />
-                </div>
-              </div>
+              <FieldControl>
+                <input
+                  name="title"
+                  className="input"
+                  type="text"
+                  placeholder="Title"
+                />
+              </FieldControl>
+              <FieldControl>
+                <input
+                  name="description"
+                  className="input"
+                  type="text"
+                  placeholder="Description"
+                />
+              </FieldControl>
+              <FieldControl>
+                <input
+                  name="location"
+                  className="input"
+                  type="text"
+                  placeholder="Location"
+                />
+              </FieldControl>
+              <FieldControl>
+                <input
+                  name="tags"
+                  className="input"
+                  type="text"
+                  placeholder="Tags"
+                />
+              </FieldControl>
               <button type="submit">Add</button>
             </form>
-            {this.state.redirect && <Redirect to="/MyExperiences" />}
           </div>
         </div>
       </div>

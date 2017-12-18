@@ -25,7 +25,7 @@ class Home extends PureComponent {
               && 
               <div>
                 <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '200px',height: '120px', margin: '10px' }} src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>
-                <button className=" delete" onClick={()=>this.handleDelete(exp._id)}>x</button>
+                <button className="delete" onClick={()=>this.handleDelete(exp._id)}>x</button>
               </div>
               }
 
@@ -34,7 +34,7 @@ class Home extends PureComponent {
               <div>
                 <div>
                   <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '150px',height: '120px', margin: '10px' }} src={stock} alt='none'/></Link>
-                  <button className=" delete" onClick={()=>this.handleDelete(exp._id)}>x</button>
+                  <button className="delete" onClick={()=>this.handleDelete(exp._id)}>x</button>
                 </div>
                 <p style={{ textAlign:'center' }}>{exp.location}</p>
               </div>

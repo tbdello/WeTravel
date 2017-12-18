@@ -55,7 +55,8 @@ export function signup(user) {
   };
 }
 
-export function UpdateProfile(data){
+// not a class, so should not be TitleCased
+export function updateProfile(data){
   return {
     type:actions.UPDATE_PROFILE,
     payload: authApi.updateUser(data)

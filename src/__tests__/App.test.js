@@ -12,6 +12,10 @@ describe('App', () => {
     const error = null;
     const checkForToken = () => {};
 
+    // You want to test main different conditions:
+    // 1) has an error
+    // 2) is loading
+    // 3) no error, not loading
     const wrapper = shallow(
       <App 
         checkedToken={checkedToken}

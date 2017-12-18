@@ -43,9 +43,10 @@ export class Home extends PureComponent {
                 <button
                   className="button"
                   onClick={() => {
-                    this.state.shouldDisplay
-                      ? this.setState({ shouldDisplay: false })
-                      : this.setState({ shouldDisplay: true });
+                    // need to use function form of set state because you're using state to set next state
+                    this.setState(prevState => ({
+                      shouldDisplay: !prevState.shouldDisplay
+                    }));
                   }}
                 >
                   Edit Profile
@@ -54,6 +55,7 @@ export class Home extends PureComponent {
             </div>
             <div>
               {this.state.shouldDisplay &&
+                /* This should probably be own component */
                 <form onSubmit={this.handleUserUpdate}>
                   <div className="control">
                     <div className="file">

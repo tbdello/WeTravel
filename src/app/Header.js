@@ -9,6 +9,7 @@ class Header extends PureComponent {
       <div className="header">
         <nav className="breadcrumb" aria-label="breadcrumbs">
           <ul>
+            {/* with navlink, you want to provide an activeClass so it visually indicates the current route */}
             <NavLink className="navbar-item" to="/home">
               <img src={require('../resources/logo.png')} alt="iTravel logo" />
             </NavLink>
@@ -44,6 +45,7 @@ class Header extends PureComponent {
   }
 }
 
-export default connect(state => ({ user: state.auth.user }), { signout })(
-  Header
-);
+export default connect(
+  state => ({ user: state.auth.user }), 
+  { signout }
+)(Header);

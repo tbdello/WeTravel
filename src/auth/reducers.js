@@ -8,7 +8,8 @@ export function user(state = null, { type, payload }) {
     case ACTIONS.SET_CURRENT_USER:
       return payload;
     case ACTIONS.LOAD_USER_EXP:
-      return Object.assign(state, { experiences: payload });
+      return { ...state, experiences: payload };
+    // this is not different than SET_CURRENT_USER, so use one action
     case ACTIONS.UPDATE_PROFILE:
       return payload;
     case ACTIONS.LOGOUT:
