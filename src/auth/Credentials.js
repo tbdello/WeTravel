@@ -13,30 +13,28 @@ export default class Credentials extends React.PureComponent{
 
   render(){
     return(
-      <div className="tile">
-        <form onSubmit ={this.handleSubmit}>
-          { this.props.allowName && 
-            <div className="field">
-              <label className="label">Name</label>
-              <div className="control">
-                <input name="name" className="input" type="text"/>
-              </div>
-            </div>}
+      <form style={{ margin:'auto', width: '30%' }} onSubmit ={this.handleSubmit}>
+        { this.props.allowName && 
           <div className="field">
-            <label className="label">Email</label>
+            <label className="label">Name</label>
             <div className="control">
-              <input name="email" className="input" type="text"/>
+              <input name="name" className="input" type="text"/>
             </div>
+          </div>}
+        <div className="field">
+          <label className="label">Email</label>
+          <div className="control">
+            <input name="email" className="input" type="text"/>
           </div>
-          <div className="field">
-            <label className="label">Password</label>
-            <div className="control">
-              <input type="password" name="password" className="input"/>
-            </div>
+        </div>
+        <div className="field">
+          <label className="label">Password</label>
+          <div className="control">
+            <input type="password" name="password" className="input"/>
           </div>
-          <button>{this.props.action}</button>
-        </form>
-      </div>
+        </div>
+        <button>{this.props.action}</button>
+      </form>
     );
   }
 }

@@ -105,7 +105,7 @@ export class Experience extends PureComponent {
           } 
         </div>
         <StyledDiv>
-          {(this.searchedExp().images)
+          {this.searchedExp().images
             ?(<div>
               {this.searchedExp().images.map((img, i, array) => (
                 <ImgDiv key={img._id} shouldDisplay ={this.state.index === i}>

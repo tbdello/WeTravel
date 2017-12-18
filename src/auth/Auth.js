@@ -17,15 +17,13 @@ class Auth extends PureComponent {
       <div className="container">
         <section className="hero is-dark">
           <div className="hero-body">
-            <div className="container">
-              <h1 className="title">Welcome!</h1>
-              <h2 className="subtitle">
-                <Link to="/auth/signin"> Sign In Here </Link> if you already
-                have an account with us or <Link to="/auth/signup">
-                  Sign Up here{' '}
-                </Link>
-              </h2>
-            </div>
+            <h1 className="title">Welcome!</h1>
+            <h2 className="subtitle">
+              <Link to="/auth/signin"> Sign In Here </Link> if you already
+              have an account with us or <Link to="/auth/signup">
+                Sign Up here
+              </Link>
+            </h2>
           </div>
         </section>
         <Switch>
@@ -46,8 +44,7 @@ class Auth extends PureComponent {
             )}
           />
         </Switch>
-        <p>
-          {' '}
+        <p style={{ margin:'auto', width: '50%' }}>
           iTravel is a website for people to share their travel experiences and
           connect with other travelers. Share your latest trip, connect with
           fellow travelers or browse for inspiration for your next trip!

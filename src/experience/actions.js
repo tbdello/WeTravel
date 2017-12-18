@@ -26,7 +26,8 @@ export function deleteExp(id) {
   return async dispatch => {
     await dispatch({
       type: DELETE_EXP,
-      payload: experiencesApi.delete(id).then(() => id)
+      payload: experiencesApi.delete(id)
+        .then(() => id)
     });
     dispatch({
       type: LOAD_USER_EXP,
@@ -49,7 +50,11 @@ export function addImageToExp(id, data) {
 export function DeleteImage(id, imageId) {
   return {
     type: DELETE_IMAGE_FROM_EXP,
-    payload: experiencesApi.deleteImage(id, imageId).then(() => ({ exp: id,image:imageId }))
+    payload: experiencesApi.deleteImage(id, imageId)
+      .then(() => ({ 
+        exp: id,
+        image: imageId 
+      }))
   };
 }
 

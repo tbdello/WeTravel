@@ -9,47 +9,33 @@ class Header extends PureComponent {
       <div className="header">
         <nav className="breadcrumb" aria-label="breadcrumbs">
           <ul>
-            <li>
-              <NavLink className="navbar-item" to="/home">
-                <img src={require('../resources/logo.png')} alt="iTravel logo" />
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="navbar-item" to="/home">
-                iTravel
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="navbar-item" to="/search">
-                Search
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="navbar-item" to="/upload">
-                Upload
-              </NavLink>
-            </li>
-            <li>
-              <NavLink className="navbar-item" to="/MyExperiences">
-                My Experiences
-              </NavLink>
-            </li>
+            <NavLink className="navbar-item" to="/home">
+              <img src={require('../resources/logo.png')} alt="iTravel logo" />
+            </NavLink>
+            <NavLink className="navbar-item" to="/home">
+              iTravel
+            </NavLink>
+            <NavLink className="navbar-item" to="/search">
+              Search
+            </NavLink>            
+            <NavLink className="navbar-item" to="/upload">
+              Upload
+            </NavLink>
+            <NavLink className="navbar-item" to="/MyExperiences">
+              My Experiences
+            </NavLink>
             {this.props.user ? (
-              <li>
-                <NavLink
-                  className="navbar-item"
-                  to="/"
-                  onClick={this.props.signout}
-                >
-                  Logout
-                </NavLink>
-              </li>
+              <NavLink
+                className="navbar-item"
+                to="/"
+                onClick={this.props.signout}
+              >
+                Sign Out
+              </NavLink>
             ) : (
-              <li>
-                <NavLink className="navbar-item" to="/auth/signin">
-                  Login
-                </NavLink>
-              </li>
+              <NavLink className="navbar-item" to="/auth/signin">
+                Sign In
+              </NavLink>
             )}
           </ul>
         </nav>

@@ -2,9 +2,9 @@ import { LOADING, LOADED, ERROR } from '../app/reducers';
 const isPromise = val => val && typeof val.then === 'function';
 
 export default ({ dispatch }) => next => async action => {
-  
-  if(!isPromise(action.payload)) return next(action);
 
+  if(!isPromise(action.payload)) return next(action);
+  
   const { type, payload } = action;
   dispatch({ type: LOADING });
   
@@ -15,12 +15,12 @@ export default ({ dispatch }) => next => async action => {
       payload: await payload
     });
   }
+
   catch(err) {
     dispatch({
       type: ERROR,
       payload: err
     });
-    // not sure why we need to throw an error
     throw err;
   }
 };
