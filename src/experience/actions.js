@@ -29,6 +29,8 @@ export function deleteExp(id) {
       payload: experiencesApi.delete(id)
         .then(() => id)
     });
+    // should not need to reload, reducer should just remove the experience from the store 
+    // (which it does, so why do this?)
     dispatch({
       type: LOAD_USER_EXP,
       payload: experiencesApi.getUserExp()

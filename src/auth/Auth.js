@@ -29,8 +29,11 @@ class Auth extends PureComponent {
         <Switch>
           <Route
             path="/auth/signin"
-            component={() => (
-              <Credentials action="Sign In" submit={this.props.signin} />
+            render={() => (
+              <Credentials 
+                action="Sign In" 
+                submit={this.props.signin} 
+              />
             )}
           />
           <Route

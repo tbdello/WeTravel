@@ -9,6 +9,7 @@ export class Search extends PureComponent {
   handleSearch = event => {
     event.preventDefault();
     const { elements } = event.target;
+    // don't format url here, this is presentation component that shouldn't know about urls
     const query = `?location=${elements.location.value}&tag=${elements.tag.value}`;
     this.props.loadSearch(query);
   };
@@ -47,17 +48,17 @@ export class Search extends PureComponent {
               {this.props.search.map((exp, i) => (
                 <div key={i}>
                   {exp.images && exp.images[0] && 
-              <div>
-                <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '200px',height: '120px', margin: '10px' }} src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>
-              </div>
+                  <div>
+                    <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '200px',height: '120px', margin: '10px' }} src={exp.images[0].imageURI} alt={exp.images[0].caption}/></Link>
+                  </div>
                   }
                   {exp.images && !exp.images[0] &&
-              <div>
-                <div>
-                  <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '150px',height: '120px', margin: '10px' }} src={stock} alt='none'/></Link>
-                </div>
-                <p style={{ textAlign:'center' }}>{exp.location}</p>
-              </div>
+                  <div>
+                    <div>
+                      <Link to={`experiences/${exp._id}`}><img style={{ objectFit:'cover',width: '150px',height: '120px', margin: '10px' }} src={stock} alt='none'/></Link>
+                    </div>
+                    <p style={{ textAlign:'center' }}>{exp.location}</p>
+                  </div>
                   }
                 </div>
               ))}

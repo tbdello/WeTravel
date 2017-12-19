@@ -16,7 +16,7 @@ class Feed extends PureComponent {
     return (
       <div style={{ display:'flex', marginLeft:'10%' }}>
         <FeedDiv>
-          {this.props.feed.filter(exp => exp.images.length > 0).map(exp =>(
+          {this.props.feed.map(exp =>(
             <Link key={exp._id} to={`experiences/${exp._id}`}>
               <StyledImg src={exp.images[0].imageURI} alt={exp.images[0].caption}/>
             </Link>
@@ -28,7 +28,10 @@ class Feed extends PureComponent {
 }
 
 export default connect(
-  state => ({ feed: state.feed }),
+  state => ({ 
+    // move selectors (data based on data) here
+    feed: state.feed.filter(exp => exp.images.length > 0)
+  }),
   { loadFeed }
 )(Feed);
 
