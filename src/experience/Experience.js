@@ -6,6 +6,8 @@ import {
   addImageToExp,
   addCommentToExp
 } from './actions';
+import Comments from './Comments';
+
 import styled from 'styled-components';
 
 export class Experience extends PureComponent {
@@ -41,14 +43,9 @@ export class Experience extends PureComponent {
     }));
   };
 
-  handleCommentPost = event => {
-    event.preventDefault();
-    const { elements } = event.target;
-    const post = {
-      user: this.props.user.name,
-      comment: elements.comment.value
-    };
-    this.props.addCommentToExp(this.props.id, post);
+  handleCommentPost = comment => {
+    const { id, user, addCommentToExp } = this.props;
+    addCommentToExp(id, { user: user.name, comment });
   };
 
   handleDelete = imageId => {
@@ -136,17 +133,7 @@ export class Experience extends PureComponent {
           <h5> Have questions? shoot {experience.user.name} an <a href={`mailto:${experience.user.email}?Subject=Friend%20From%20iTravel`} target="_top">email</a></h5>
         </div>
 
-        <div style={{ border:'1px solid grey' }}>
-          {experience.comments
-           && experience.comments.map((com, i) => (
-             <div key={i}>
-               <p><span style={{ fontWeight:'bold' }}>{com.user} </span>{com.comment}</p>
-             </div>))}
-          <form onSubmit={this.handleCommentPost}> 
-            <input name="comment" placeholder="Enter Your Comment Here"/>
-            <button type="submit">Post</button>
-          </form>
-        </div>
+        <Comments comments={experience.comments} onPost={this.handleCommentPost}/>
       </div>
     );
   }

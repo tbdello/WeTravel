@@ -9,12 +9,16 @@ export default ({ dispatch }) => next => async action => {
   dispatch({ type: LOADING });
   
   try {
-    // loaded needs to come AFTER await of promise!!!
+    const result = await payload;
+
     dispatch({ 
       type, 
-      payload: await payload
+      payload: result
     });
+
     dispatch({ type: LOADED });    
+
+    return result;
   }
 
   catch(err) {

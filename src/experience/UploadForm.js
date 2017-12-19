@@ -13,9 +13,6 @@ const FieldControl = ({ children }) => (
 );
 
 export class UploadForm extends PureComponent {
-  state = {
-    redirect: false
-  };
 
   handleExpPost = event => {
     event.preventDefault();
@@ -28,16 +25,12 @@ export class UploadForm extends PureComponent {
       tags: elements.tags.value.split(' ')
     };
     // you need to wait and see if action was successful
-    this.props.addExperience(exp).then(() => {
-      // this is hokey, for programmatic change, 
-      // use history.push (from router)
-      this.setState({ redirect: true });
+    this.props.addExperience(exp).then(({ _id }) => {
+      this.props.history.push(`/experiences/${_id}`);
     });
   };
 
   render() {
-    // this shouldn't be buried at the bottom of the component
-    if(this.state.redirect) return <Redirect to="/MyExperiences"/>;
 
     return (
       <div>
@@ -97,6 +90,7 @@ export class UploadForm extends PureComponent {
   }
 }
 
-export default connect(state => ({ user: state.auth.user }), { addExperience })(
-  UploadForm
-);
+export default connect(
+  state => ({ user: state.auth.user }), 
+  { addExperience }
+)(UploadForm);
